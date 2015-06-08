@@ -1,8 +1,8 @@
 # monitoring with nodetime
 if process.env.NODE_ENV == 'production'
   require('nodetime').profile(
-    accountKey: "ENTER-A-VALID-KEY-HERE"
-    appName: 'mean.coffee'
+    accountKey: "PERFECT"
+    appName: 'Management'
   )
 
 # dependencies
@@ -20,9 +20,6 @@ process.on 'uncaughtException', (err) ->
   logger.error err.stack
   process.exit 1  # because now, you are in unpredictable state!
 
-# watch and log any leak (a lot of false positive though)
-memwatch = require 'memwatch'
-memwatch.on 'leak', (d) -> logger.error "LEAK: #{JSON.stringify(d)}"
 
 # bootstap db connection
 db = mongoose.connect config.DBURL
@@ -58,5 +55,5 @@ require("./routes")(app)
 
 # start the app
 app.listen app.get('port'), ->
-  logger.info "mean.coffee server listening on port #{@address().port} in #{config.ENV} mode"
+  logger.info "management console server listening on port #{@address().port} in #{config.ENV} mode"
 

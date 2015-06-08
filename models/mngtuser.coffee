@@ -2,11 +2,10 @@ passwordHash = require 'password-hash'
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-User = new Schema(
-  username :
+MngtUser = new Schema(
+  username:
     type: String
-    index:
-      unique: true
+    unique: true
     required: true
 
   hashed_password:
@@ -14,14 +13,14 @@ User = new Schema(
     required: true
 )
 
-User.virtual('password').set (password) ->
+MngtUser.virtual('password').set (password) ->
   options =
     algorithm: 'sha256',
     iterations: 1024,
     saltLength: 10
   @hashed_password = passwordHash.generate password, options
 
-User.methods.authenticate = (plainText) ->
+MngtUser.methods.authenticate = (plainText) ->
   passwordHash.verify(plainText, @hashed_password)
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('MngtUser', MngtUser)

@@ -1,0 +1,19 @@
+<section ng-controller="HouseController" ng-init="find()">
+
+    <div class="starter-template">
+        <h1>House List</h1>
+    </div>
+
+    <table class="table striped">
+        <thead>
+            <tr><th>name</th><th>owner</th><th>description</th></tr>
+        </thead>
+        <tr ng-repeat="house in houses">
+            <td>{{house.name}}</td>
+            <td>{{house.owner}}</td>
+            <td>{{house.description}}</td>
+            <td><i class="mdi-editor-mode-edit"></i></td>
+        </tr>
+    </table>
+
+</section>

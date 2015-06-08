@@ -1,4 +1,5 @@
 #Setting up route
+meanApp = angular.module('meanApp')
 meanApp.config ['$routeProvider',
   ($routeProvider) ->
         $routeProvider
@@ -8,6 +9,12 @@ meanApp.config ['$routeProvider',
           .when '/',
             templateUrl: 'views/main.html'
             controller: 'MainController'
+          .when '/houses',
+            templateUrl: 'views/houses.html'
+            controller: 'HouseController'
+          .when '/orders',
+            templateUrl: 'views/orders.html'
+            controller: 'OrderController'
           .when '/500',
               templateUrl: 'views/500.html'
           .when '/404',
@@ -15,10 +22,3 @@ meanApp.config ['$routeProvider',
           .otherwise
             redirectTo: '/404'
 ]
-
-#Setting HTML5 Location Mode
-#meanApp.config ['$locationProvider',
-
-  #($locationProvider) -> $locationProvider.html5Mode(true)
-
-#]

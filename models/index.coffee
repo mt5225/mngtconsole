@@ -1,5 +1,6 @@
 fs = require 'fs'
 path = require 'path'
+logger = require '../config/logger'
 
 module.exports = () ->
 
@@ -8,4 +9,5 @@ module.exports = () ->
     unless filePath is __filename
       baseFilename = path.basename file, path.extname(file)
       model = path.join __dirname, baseFilename
+      logger.debug "load module #{model}"
       require(model)

@@ -17,6 +17,7 @@ path =
   bower: 'app/components'
   html: 'app/html/**/*.html'
   assets: 'app/assets/*'
+  fonts: 'app/components/materialize/font/**/*'
 
 
 gulp.task 'scripts', () ->
@@ -47,7 +48,7 @@ gulp.task 'jquery', () ->
     .pipe(gulp.dest('_public/js'))
 
 gulp.task 'bowerjs', () ->
-  gulp.src('app/components/**/*.min.js', !'app/components/jquery/jquery.min.js')
+  gulp.src('app/components/**/*.min.js')
     .pipe(flatten())
     .pipe(concat 'vendor.min.js')
     .pipe(size())
@@ -71,12 +72,10 @@ gulp.task 'assets', () ->
     .pipe(size())
     .pipe(gulp.dest '_public/assets')
 
-gulp.task 'ngroute', () ->
-  gulp.src('app/components/angular-route/angular-route.min.js')
-  .pipe(flatten())
-  .pipe(concat 'ngroute.min.js')
-  .pipe(size())
-  .pipe(gulp.dest('_public/js'))
+gulp.task 'fonts', () ->
+  gulp.src(path.fonts)
+    .pipe(size())
+    .pipe(gulp.dest '_public/font')
 
 gulp.task 'watch', () ->
   gulp.watch path.scripts, ['scripts']
@@ -90,7 +89,7 @@ gulp.task 'clean', () ->
     .pipe(rimraf())
 
 
-gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets', 'ngroute']
+gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets', 'fonts']
 
 gulp.task 'dev', ['default', 'scripts', 'watch']
 

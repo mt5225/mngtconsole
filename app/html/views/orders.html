@@ -1,0 +1,20 @@
+<section ng-controller="OrderController" ng-init="find()">
+
+    <div class="starter-template">
+        <h1>House List</h1>
+    </div>
+
+    <table class="table striped">
+        <thead>
+            <tr><th>订单号</th><th>入住时间</th><th>退房</th><th>昵称</th></tr>
+        </thead>
+        <tr ng-repeat="order in orders">
+            <td>{{order.orderId}}</td>
+            <td>{{order.checkInDay}}</td>
+            <td>{{order.checkOutDay}}</td>
+            <td>{{order.wechatNickName}}</td>
+            <td><i class="mdi-editor-mode-edit"></i></td>
+        </tr>
+    </table>
+
+</section>

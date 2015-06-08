@@ -1,4 +1,5 @@
 #Global service for global variables
+meanApp = angular.module('meanApp')
 meanApp.factory 'Global', [
 
   () ->
