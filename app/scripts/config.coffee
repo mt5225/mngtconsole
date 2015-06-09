@@ -15,10 +15,13 @@ meanApp.config ['$routeProvider',
           .when '/orders',
             templateUrl: 'views/orders.html'
             controller: 'OrderController'
+          .when '/cal',
+            templateUrl: 'views/cal.html'
+            controller: 'CalController'
           .when '/500',
-              templateUrl: 'views/500.html'
+            templateUrl: 'views/500.html'
           .when '/404',
-              templateUrl: 'views/404.html'
+            templateUrl: 'views/404.html'
           .otherwise
             redirectTo: '/404'
 ]

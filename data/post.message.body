@@ -1,0 +1,2 @@
+{ dopbcp_calendar_id: '1',
+  dopbcp_schedule: '{"2015-06-19":{"available":1,"bind":3,"info":"","notes":"","price":10,"promo":0,"status":"available"},"2015-06-09":{"available":1,"bind":0,"info":"aa","notes":"bb","price":1200,"promo":1100,"status":"available"}}' }

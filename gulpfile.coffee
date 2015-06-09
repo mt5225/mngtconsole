@@ -5,19 +5,26 @@ coffee = require 'gulp-coffee'
 watch = require 'gulp-watch'
 concat = require 'gulp-concat'
 imagemin = require 'gulp-imagemin'
-rimraf = require 'gulp-rimraf'
+rimraf = require 'rimraf'
 flatten = require 'gulp-flatten'
 minifycss = require 'gulp-minify-css'
 size = require 'gulp-size'
-
+sftp = require 'gulp-sftp'
+ssh = require('gulp-ssh')(
+  sshConfig: 
+    host: 'qa.aghchina.com.cn'
+    username: 'root'
+    password: '8Sh7evxc'
+)
 
 path =
   scripts: 'app/scripts/**/*.coffee'
-  styles: 'app/styles/**/*.css'
+  styles:  'app/styles/**/*.css'
   bower: 'app/components'
   html: 'app/html/**/*.html'
   assets: 'app/assets/*'
-  fonts: 'app/components/materialize/font/**/*'
+  fonts: ['app/components/materialize/font/**', '!app/components/materialize/font/roboto{,/**}']
+  public: '_public'
 
 
 gulp.task 'scripts', () ->
@@ -43,7 +50,7 @@ gulp.task 'styles', () ->
     .pipe(gulp.dest '_public/css')
 
 gulp.task 'jquery', () ->
-  gulp.src('app/components/jquery/jquery.min.js')
+  gulp.src(['app/jquery/dist/jquery.min.js','app/jquery-ui/jquery-ui.min.js'])
     .pipe(size())
     .pipe(gulp.dest('_public/js'))
 
@@ -84,13 +91,23 @@ gulp.task 'watch', () ->
   gulp.watch path.html, ['html']
   gulp.watch path.assets, ['assets']
 
-gulp.task 'clean', () ->
-  gulp.src('_public', { read: false })
-    .pipe(rimraf())
+gulp.task 'clean', (cb) ->
+  rimraf path.public, cb
 
+gulp.task 'upload', () ->
+  gulp.src('_public/**')
+    .pipe sftp(
+      host: 'qa.aghchina.com.cn'
+      user: 'root'
+      pass: '8Sh7evxc'
+      remotePath: '/tmp/_public') 
 
-gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets', 'fonts']
+gulp.task 'cal', () ->
+  gulp.src('app/dopbcp/**')
+    .pipe(gulp.dest '_public/dopbcp')
 
-gulp.task 'dev', ['default', 'scripts', 'watch']
+gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets', 'fonts', 'cal']
+
+gulp.task 'dev', ['clean', 'default', 'scripts', 'watch']
 
 gulp.task 'build', ['clean', 'default', 'uglyscripts']

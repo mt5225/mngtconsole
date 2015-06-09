@@ -7,3 +7,7 @@ body {
     padding: 40px 15px;
     text-align: center;
 }
+/*get rid of robot font-family*/
+html {
+    font-family: Verdana, Geneva, sans-serif;
+}

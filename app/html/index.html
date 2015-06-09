@@ -4,8 +4,12 @@
     <head>
         <meta charset="utf-8">
         <title>完美生活：管理后台</title>
-        <link rel="stylesheet" href="css/app.min.css">
         <link rel="stylesheet" href="css/vendor.min.css">
+        <link rel="stylesheet" href="css/app.min.css">
+        <link rel="stylesheet" href="dopbcp/assets/gui/css/css-reset.css">
+        <link rel="stylesheet" href="dopbcp/assets/gui/css/jquery.dop.Select.css">
+        <link rel="stylesheet" href="dopbcp/assets/gui/css/jquery.dop.BackendBookingCalendarPRO.css">
+        <link rel="stylesheet" href="dopbcp/templates/default/css/jquery.dop.FrontendBookingCalendarPRO.css"> 
     </head>
 
     <body>
@@ -27,6 +31,7 @@
                     <li><a href="#users">用户管理</a></li>
                     <li><a href="#houses">营地管理</a></li>
                     <li><a href="#orders">订单管理</a></li>
+                    <li><a href="#cal">预定管理</a></li>
                 </ul>
             </div>
         </div>
@@ -36,9 +41,13 @@
         <div ng-view></div>
     </div>
 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="dopbcp/assets/js/jquery.dop.Select.js"></script>
+    <script src="dopbcp/assets/js/dop-prototypes.js"></script>
+    <script src="dopbcp/assets/js/jquery.dop.BackendBookingCalendarPRO.js"></script>
+    <script src="dopbcp/assets/js/jquery.dop.FrontendBookingCalendarPRO.js"></script>
     <script src="js/vendor.min.js"></script>
     <script src="js/app.min.js"></script>
-
     </body>
-
 </html>
