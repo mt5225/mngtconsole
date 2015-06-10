@@ -10,12 +10,8 @@ flatten = require 'gulp-flatten'
 minifycss = require 'gulp-minify-css'
 size = require 'gulp-size'
 sftp = require 'gulp-sftp'
-ssh = require('gulp-ssh')(
-  sshConfig: 
-    host: 'qa.aghchina.com.cn'
-    username: 'root'
-    password: '8Sh7evxc'
-)
+shell = require 'gulp-shell'
+ssh = require 'gulp-ssh'
 
 path =
   scripts: 'app/scripts/**/*.coffee'
@@ -91,8 +87,9 @@ gulp.task 'watch', () ->
   gulp.watch path.html, ['html']
   gulp.watch path.assets, ['assets']
 
-gulp.task 'clean', (cb) ->
-  rimraf path.public, cb
+gulp.task 'clean', shell.task([
+  'rm -rf ./_public'
+])
 
 gulp.task 'upload', () ->
   gulp.src('_public/**')
@@ -108,6 +105,6 @@ gulp.task 'cal', () ->
 
 gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets', 'fonts', 'cal']
 
-gulp.task 'dev', ['clean', 'default', 'scripts', 'watch']
+gulp.task 'dev', ['default', 'scripts', 'watch']
 
 gulp.task 'build', ['clean', 'default', 'uglyscripts']
