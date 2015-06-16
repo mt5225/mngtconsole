@@ -95,9 +95,7 @@ gulp.task 'upload', () ->
   gulp.src('_public/**')
     .pipe sftp(
       host: 'qa.aghchina.com.cn'
-      user: 'root'
-      pass: '8Sh7evxc'
-      remotePath: '/tmp/_public') 
+      auth: 'KeyMain') 
 
 gulp.task 'cal', () ->
   gulp.src('app/dopbcp/**')

@@ -1,6 +1,6 @@
 base =
   ENV: process.env.NODE_ENV || 'development'
-  PORT: process.env.PORT || 3000
+  PORT: process.env.PORT || 3033
   LOGPATH: "mngtconsole.log"
   COOKIE_SECRET: "kknd"
   DBURLTEST: "mongodb://localhost/perfectlife"
@@ -9,7 +9,7 @@ dev =
   DBURL: "mongodb://localhost/perfectlife"
 
 prod =
-  DBURL: "mongodb://localhost/perfectlife"
+  DBURL: "mongodb://qa.aghchina.com.cn/perfectlife"
 
 mergeConfig = (config) ->
   for key, val of config

@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 *.log
+.ftppass
 
 node_modules
 _public

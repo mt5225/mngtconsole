@@ -1,9 +1,6 @@
-# monitoring with nodetime
-if process.env.NODE_ENV == 'production'
-  require('nodetime').profile(
-    accountKey: "PERFECT"
-    appName: 'Management'
-  )
+#set env
+#process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'development'
 
 # dependencies
 config = require './config/config'
@@ -37,7 +34,7 @@ mongoose.connection.on 'disconnected', () ->
     logger.error "mongodb disconnected, trying to reconnect.."
     logger.info "mongodb reconnect, attempt num #{attempt}"
     attempt += 1
-    db = mongoose.connect config.DBURL, opts
+    db = mongoose.connect config.DBURL
   else
     logger.error "mongodb disconnect, giving up!"
 
