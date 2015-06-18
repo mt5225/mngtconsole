@@ -9,9 +9,19 @@ rimraf = require 'rimraf'
 flatten = require 'gulp-flatten'
 minifycss = require 'gulp-minify-css'
 size = require 'gulp-size'
+runSequence = require 'run-sequence'
 sftp = require 'gulp-sftp'
 shell = require 'gulp-shell'
-ssh = require 'gulp-ssh'
+sshConfig = require './config.json'
+ssh = require('gulp-ssh')(
+  ignoreErrors: false
+  sshConfig:
+    host: 'qa.aghchina.com.cn'
+    port: 22
+    username: sshConfig.user
+    password: sshConfig.pass
+)
+
 
 path =
   scripts: 'app/scripts/**/*.coffee'
@@ -20,7 +30,8 @@ path =
   html: 'app/html/**/*.html'
   assets: 'app/assets/*'
   fonts: ['app/components/materialize/font/**', '!app/components/materialize/font/roboto{,/**}']
-  public: '_public'
+  public: '_public/**'
+  bin: ['**', '!_public/**', '!app/**', '!data/**', '!node_modules/**', '!test/**']
 
 
 gulp.task 'scripts', () ->
@@ -91,11 +102,26 @@ gulp.task 'clean', shell.task([
   'rm -rf ./_public'
 ])
 
-gulp.task 'upload', () ->
-  gulp.src('_public/**')
+gulp.task 'upload-web', () ->
+  gulp.src(path.public)
     .pipe sftp(
       host: 'qa.aghchina.com.cn'
-      auth: 'KeyMain') 
+      user: sshConfig.user
+      pass: sshConfig.pass
+      remotePath: '/root/mngtconsole/_public') 
+
+gulp.task 'upload-bin', () ->
+  gulp.src(path.bin)
+    .pipe sftp(
+      host: 'qa.aghchina.com.cn'
+      user: sshConfig.user
+      pass: sshConfig.pass
+      remotePath: '/root/mngtconsole')
+
+gulp.task 'restart', ()->
+  ssh.exec([
+    'forever restart f0D5'
+  ], filePath: 'commands.log').pipe gulp.dest('.')
 
 gulp.task 'cal', () ->
   gulp.src('app/dopbcp/**')
@@ -105,4 +131,13 @@ gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets
 
 gulp.task 'dev', ['default', 'scripts', 'watch']
 
-gulp.task 'build', ['clean', 'default', 'uglyscripts']
+gulp.task 'dist', ['clean', 'default', 'scripts']
+
+gulp.task 'upload-all', ['upload-web', 'upload-bin']
+
+gulp.task 'run-remote', () ->
+  runSequence 'dist', 'upload-all', 'restart'
+
+
+
+

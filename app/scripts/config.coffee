@@ -18,6 +18,9 @@ meanApp.config ['$routeProvider',
           .when '/cal',
             templateUrl: 'views/cal.html'
             controller: 'CalController'
+          .when '/surveys',
+            templateUrl: 'views/surveys.html'
+            controller: 'SurveyController'
           .when '/500',
             templateUrl: 'views/500.html'
           .when '/404',

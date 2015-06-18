@@ -1,6 +1,3 @@
-#set env
-#process.env.NODE_ENV = 'production'
-process.env.NODE_ENV = 'development'
 
 # dependencies
 config = require './config/config'

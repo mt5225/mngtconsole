@@ -1,0 +1,19 @@
+<section ng-controller="SurveyController" ng-init="find()">
+
+    <div class="starter-template">
+        <h1>问卷结果清单</h1>
+    </div>
+
+    <table class="table striped">
+        <thead>
+            <tr><th>填写时间</th><th>填写人</th><th>内容</th></tr>
+        </thead>
+        <tr ng-repeat="survey in surveys">
+            <td>{{survey.createDay}}</td>
+            <td>{{survey.userinfo['nickname']}}</td>
+            <td>{{survey}}</td>
+            <td><i class="mdi-editor-mode-edit"></i></td>
+        </tr>
+    </table>
+
+</section>
