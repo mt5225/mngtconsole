@@ -15,6 +15,9 @@ meanApp.config ['$routeProvider',
           .when '/orders',
             templateUrl: 'views/orders.html'
             controller: 'OrderController'
+          .when '/orders/:orderId',
+            templateUrl: 'views/ordereditor.html'
+            controller: 'OrderController'
           .when '/cal',
             templateUrl: 'views/cal.html'
             controller: 'CalController'

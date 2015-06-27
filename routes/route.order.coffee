@@ -12,3 +12,20 @@ module.exports = (app) ->
         res.status(500).json err
       else
         res.status(200).json orders
+
+  app.get '/api/orders/:orderId', auth.none, (req, res) ->
+    orderId = req.params['orderId']
+    order_service.getOrder orderId, (err, order) ->
+      if err
+        logger.error err
+        res.status(500).json err
+      else
+        res.status(200).json order
+
+  app.post '/api/orders/:orderId', auth.none, (req, res) ->
+    order_service.updateOrder req, (err, order) ->
+      if err
+        logger.error err
+        res.status(500).json err
+      else
+        res.status(200).json order

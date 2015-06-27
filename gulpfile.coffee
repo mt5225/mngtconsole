@@ -118,6 +118,11 @@ gulp.task 'upload-bin', () ->
       pass: sshConfig.pass
       remotePath: '/root/mngtconsole')
 
+gulp.task 'clean-remote-web', ()->
+  ssh.exec([
+    'rm -rf /root/mngtconsole/_public'
+  ], filePath: 'commands.log').pipe gulp.dest('.')
+
 gulp.task 'restart', ()->
   ssh.exec([
     'forever restart f0D5'
@@ -131,12 +136,14 @@ gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets
 
 gulp.task 'dev', ['default', 'scripts', 'watch']
 
-gulp.task 'dist', ['clean', 'default', 'scripts']
+gulp.task 'compile', () ->
+  runSequence 'clean', 'default', 'scripts'
 
-gulp.task 'upload-all', ['upload-web', 'upload-bin']
+gulp.task 'run-remote-web', () ->
+  runSequence 'clean-remote-web', 'upload-web', 'restart'
 
-gulp.task 'run-remote', () ->
-  runSequence 'dist', 'upload-all', 'restart'
+gulp.task 'run-remote-bin', () ->
+  runSequence 'compile', 'upload-bin', 'restart'
 
 
 

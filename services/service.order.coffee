@@ -8,4 +8,11 @@ module.exports =
     Order.find {}, (err, order) -> callback err, order
 
   getOrder: (id, callback) ->
-    Order.findOne {id: id}, (err, order) -> callback err, order
+    console.log "query orderId = #{id}"
+    Order.findOne {orderId: id}, (err, order) -> callback err, order
+
+  updateOrder: (req, callback) ->
+    order = req.body
+    Order.update { orderId: order.orderId }, { $set: status: order.status }, (err, order) ->
+      callback err, order
+

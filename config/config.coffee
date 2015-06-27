@@ -9,7 +9,7 @@ dev =
   DBURL: "mongodb://localhost/perfectlife"
 
 prod =
-  DBURL: "mongodb://qa.aghchina.com.cn/perfectlife"
+  DBURL: "mongodb://localhost/perfectlife"
 
 mergeConfig = (config) ->
   for key, val of config

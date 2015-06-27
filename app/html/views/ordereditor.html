@@ -1,0 +1,40 @@
+<section ng-controller="OrderController" ng-init="findOne()">
+    <div class="starter-template">
+        <h1>&nbsp;</h1>
+    </div>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h4>订单号： {{order.orderId}}</h4></li>
+        <li class="collection-item">
+            <div>营地: {{order.houseName}}
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>入住时间: {{order.checkInDay}}
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>退房: {{order.checkOutDay}}
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>总价: {{order.totalPrice}}
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>微信昵称: {{order.wechatNickName}}
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>订单当前状态： {{order.status}} <br/>
+                更改为： <select class="browser-default" ng-model="order.status">
+                    <option value="" disabled selected>指定订单状态</option>
+                    <option value="已提交">已提交</option>
+                    <option value="付款完成">付款完成</option>
+                    <option value="取消">取消</option>
+                </select>
+            </div>
+        </li>
+    </ul>
+    <button class="btn waves-effect waves-light" ng-click="update()" name="action">保存修改</button>
+</section>
