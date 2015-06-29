@@ -1,6 +1,9 @@
 meanApp.controller 'OrderController', ($scope, Global, OrderService, $location, $log, $routeParams) ->
 
   $scope.global = Global
+  $scope.orderByField = 'checkInDay'
+  $scope.reverseSort = false
+
   $scope.find = () ->
     $scope.orders = OrderService.query()
 
