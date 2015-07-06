@@ -1,11 +1,13 @@
 meanApp.controller 'OrderController', ($scope, Global, OrderService, $location, $log, $routeParams) ->
 
   $scope.global = Global
-  $scope.orderByField = 'checkInDay'
+  $scope.orderByField = 'createDay'
   $scope.reverseSort = false
+  $scope.itemsByPage = 10
 
   $scope.find = () ->
     $scope.orders = OrderService.query()
+    $scope.displayedCollection = [].concat($scope.orders);
 
   $scope.findOne = () ->
     $log.debug "order id = #{$routeParams.orderId}"

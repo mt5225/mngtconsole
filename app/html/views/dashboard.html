@@ -1,0 +1,37 @@
+<section ng-controller="DashboardController" ng-init="find(0)">
+    <div class="starter-template">
+    </div>
+    <div>
+        <button class="btn waves-effect waves-light" ng-click="find(0)"> 本 周
+            <i class="material-icons"></i>
+        </button>
+        <button class="btn waves-effect waves-light" ng-click="find(1)"> 下周
+            <i class="material-icons"></i>
+        </button>
+        <button class="btn waves-effect waves-light" ng-click="find(2)"> 下下周
+            <i class="material-icons"></i>
+        </button>
+        <button class="btn waves-effect waves-light" ng-click="find(3)"> 下下下周
+            <i class="material-icons"></i>
+        </button>
+        <button class="btn waves-effect waves-light" ng-click="find(4)"> 下下下下周
+            <i class="material-icons"></i>
+        </button>
+    </div>
+    <div class="starter-template">
+    </div>
+    <table class="table bordered striped">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th ng-repeat="day in days">{{getWeekName(day)}} <br> {{day}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="house in houses">
+                <td>{{house.name}}</td>
+                <td ng-repeat="day in days">{{getOrder(day, house.name)}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
