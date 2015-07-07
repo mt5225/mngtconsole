@@ -125,7 +125,8 @@ gulp.task 'clean-remote-web', ()->
 
 gulp.task 'restart', ()->
   ssh.exec([
-    'forever restart f0D5'
+    'forever restart f0D5', 
+    'forever restart P0MK'
   ], filePath: 'commands.log').pipe gulp.dest('.')
 
 gulp.task 'cal', () ->
@@ -143,7 +144,7 @@ gulp.task 'run-remote-web', () ->
   runSequence 'clean-remote-web', 'upload-web', 'restart'
 
 gulp.task 'run-remote-bin', () ->
-  runSequence 'compile', 'upload-bin', 'restart'
+  runSequence 'upload-bin', 'restart'
 
 
 

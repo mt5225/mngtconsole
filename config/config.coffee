@@ -11,6 +11,12 @@ dev =
 prod =
   DBURL: "mongodb://localhost/perfectlife"
 
+orderscaner =
+  LOGPATH: "orderscaner.log"
+  DBURL: "mongodb://localhost/perfectlife"
+  ORDER_EXPIRE_MINUTES : 30
+  INTERVAL_SECOND : 5
+
 mergeConfig = (config) ->
   for key, val of config
     base[key] = val
@@ -20,6 +26,7 @@ module.exports = ( ->
   switch base.ENV
     when 'development' then return mergeConfig(dev)
     when 'production' then return mergeConfig(prod)
+    when 'orderscaner' then return mergeConfig(orderscaner)
     else return mergeConfig(dev)
 )()
 

@@ -1,4 +1,3 @@
-
 # dependencies
 config = require './config/config'
 logger = require './config/logger'
