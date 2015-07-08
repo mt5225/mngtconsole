@@ -31,7 +31,7 @@ meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseSe
 
   $scope.getWeekName = (dayStr) ->
     day = new Date(dayStr)
-    ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][day.getDay()]
+    ["星期日", "星期一","星期二","星期三","星期四","星期五","星期六"][day.getDay()]
 
   $scope.find = (hop) ->
     $log.debug "get order records"
@@ -41,7 +41,11 @@ meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseSe
 
   #todo filter order with right status
   $scope.getOrder = (dayStr, housename) ->
+    status = []
     for order in $scope.orders
       if order.houseName == housename && dayStr >= order.checkInDay && dayStr < order.checkOutDay
-        return order.wechatNickName + ' ' + order.orderId
-
+        status.push order.orderId
+        status.push order.wechatNickName
+        status.push order.status
+        break
+    status

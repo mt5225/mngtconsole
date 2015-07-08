@@ -23,6 +23,11 @@ nav {
 }
 /*get rid of robot font-family*/
 
+.fillheight {
+    height: 40px; 
+    width: auto;
+}
+
 html {
     font-family: Verdana, Geneva, sans-serif;
 }

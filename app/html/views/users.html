@@ -1,7 +1,25 @@
-<section>
-
+<section ng-controller="UserController" ng-init="find()">
     <div class="starter-template">
-        <h1>{{message}}</h1>
+        <h1>&nbsp;</h1>
     </div>
 
+    <div class="row">
+        <div class="col s4" ng-repeat="user in users">
+          <div class="card grey lighten-2">
+            <div class="card-content black-text">
+              <span class="card-title black-text"> <img ng-src="{{user.headimgurl}}" alt="" class="circle fillheight"> {{user.nickname}}</span>
+              <p>{{user.province}} &nbsp;{{user.country}}</p>
+              <br>
+              <p>爱好: {{user.fav}}</p>
+              <br>
+              <p>成员类型: {{user.member_level}}</p>
+            </div>
+            <div class="card-action black-text">
+              <a data-ng-href="#/users/{{user.openid}}" class="secondary-content black-text">编辑<i class="mdi-editor-mode-edit"></i></a>
+              <a href="#" class="black-text">入住历史</a>
+              <a href="#" class="black-text">问卷</a>
+            </div>
+          </div>
+        </div>
+    </div>
 </section>

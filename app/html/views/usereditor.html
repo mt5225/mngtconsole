@@ -1,0 +1,66 @@
+<section ng-controller="UserController" ng-init="findOne()">
+    <div class="starter-template">
+        <h1>&nbsp;</h1>
+    </div>
+    <ul class="collection">
+        <li class="collection-item avatar">
+            <p><img ng-src="{{user.headimgurl}}" alt="" class="circle"> &nbsp;微信昵称: {{user.nickname}}</p>
+            <p><i class="mdi-maps-beenhere"></i>&nbsp;{{user.city}} {{user.province}} {{user.country}}</p>
+        </li>
+        <li class="collection-item">
+            <p><i class="mdi-action-account-circle"></i>&nbsp;微信openid: {{user.openid}}</p>
+            <p><i class="mdi-action-alarm"></i>&nbsp;关注漫生活时间： {{subscribe_time}}</p>
+        </li>
+        <li class="collection-item row">
+            <div class="input-field col s2 left-align">
+                <input id="cell" type="text" class="validate" ng-model="user.realname">
+                <label for="cell" class="active">真实姓名</label>
+            </div>
+            <div class="input-field col s3">
+                <input id="identity" type="text" class="validate" ng-model="user.identity">
+                <label for="identity" class="active">身份证号</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="cell" type="text" class="validate" ng-model="user.cell">
+                <label for="cell" class="active"><i class="mdi-maps-local-phone"></i>&nbsp;手机号</label>
+            </div>
+            <div class="input-field col s3 offset-s1">
+                <input id="email" type="text" class="validate" ng-model="user.email">
+                <label for="email" class="active">邮箱</label>
+            </div>
+        </li>
+        <li class="collection-item row">
+            <div class="input-field col s4">
+                <p> &nbsp;成员类型</p>
+                <select class="browser-default" ng-model="user.member_level">
+                    <option value="" disabled selected>指定成员类型</option>
+                    <option value="访客">访客</option>
+                    <option value="会员">会员</option>
+                    <option value="营主">营主</option>
+                    <option value="志愿者">志愿者</option>
+                    <option value="合伙人">合伙人</option>
+                </select>
+            </div>
+            <div class="col s5 offset-s3"> 
+                <button class="btn waves-effect waves-light teal lighten-3" ng-click="">营地订单</button> &nbsp;
+                <button class="btn waves-effect waves-light teal lighten-3" ng-click="">问卷情况</button>
+            </div>
+        </li>
+        <li class="collection-item row ">
+            <div class="col s6">
+                <p>&nbsp;个人爱好</p>
+                <div ng-repeat="fruitName in fruits" class="col s4">
+                    <input type="checkbox" class="filled-in" id="{{fruitName}}" ng-checked="selection.indexOf(fruitName) > -1" ng-click="toggleSelection(fruitName)"/>
+                    <label for="{{fruitName}}">{{fruitName}}</label>
+                </div>
+            </div>
+            <div class="input-field col s6 ">
+                <textarea id="memo " class="materialize-textarea " ng-model="user.memo "></textarea>
+                <label for="memo " class="active "> <i class="mdi-editor-mode-edit"></i> &nbsp;备注</label>
+            </div>
+        </li>
+    </ul>
+    <div class="row">
+        <button class="btn waves-effect waves-light col s2 offset-s8" ng-click="update() " name="action ">保存修改</button>
+    </div>
+</section>
