@@ -57,7 +57,7 @@ gulp.task 'styles', () ->
     .pipe(gulp.dest '_public/css')
 
 gulp.task 'jquery', () ->
-  gulp.src(['app/jquery/dist/jquery.min.js','app/jquery-ui/jquery-ui.min.js'])
+  gulp.src(['app/externaljs/jquery/dist/jquery.min.js','app/externaljs/jquery-ui/jquery-ui.min.js', 'app/externaljs/exportjs/*.js'])
     .pipe(size())
     .pipe(gulp.dest('_public/js'))
 

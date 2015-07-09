@@ -6,8 +6,20 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, $location, 
   $scope.itemsByPage = 10
 
   $scope.find = () ->
-    $scope.orders = OrderService.query()
-    $scope.displayedCollection = [].concat($scope.orders);
+    OrderService.query()
+    .$promise.then ((payload) ->   
+      openid = $routeParams['openid']
+      $log.debug "openid = #{openid}"
+      if openid?
+        record = []
+        for item in payload
+          $log.debug item.wechatOpenID
+          record.push item if item.wechatOpenID is openid
+        $scope.orders = record
+      else
+        $scope.orders = payload
+      $scope.displayedCollection = [].concat($scope.orders)
+    )
 
   $scope.findOne = () ->
     $log.debug "order id = #{$routeParams.orderId}"

@@ -28,6 +28,13 @@ nav {
     width: auto;
 }
 
+.shortten {
+    width: 480px;
+    overflow: auto;
+    display: inline-block;
+    white-space: nowrap;
+}
+
 html {
     font-family: Verdana, Geneva, sans-serif;
 }
