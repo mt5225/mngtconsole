@@ -1,10 +1,8 @@
-<section ng-controller="OrderController" ng-init="find()">
-    <div class="starter-template">
-        <h1>&nbsp;</h1>
-    </div>
+<div ng-controller="OrderController" ng-init="find()">
+    <br>
     <table st-table="displayedCollection" st-safe-src="orders" class="table table-striped">
         <thead>
-            <tr>
+            <tr class="teal lighten-4">
                 <th st-sort="orderId">订单号</th>
                 <th st-sort="createDay" st-sort-default="reverse">下单日期</th>
                 <th st-sort="houseName">营地</th>
@@ -37,16 +35,14 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5" class="text-center">
+                <td colspan="1">
+                    <label for="items">每页显示纪录数</label>
+                    <input placeholder="每页显示纪录数" class="input-sm form-control ng-valid ng-dirty ng-valid-number ng-touched" name="items" id="items" type="number" ng-model="itemsByPage">
+                </td>
+                <td colspan="5">
                     <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
                 </td>
             </tr>
         </tfoot>
     </table>
-    <div class="row">
-        <div class="col s2">
-            <label for="items">每页显示纪录数</label>
-            <input placeholder="每页显示纪录数" class="input-sm form-control ng-valid ng-dirty ng-valid-number ng-touched" name="items" id="items" type="number" ng-model="itemsByPage">
-        </div>
-    </div>
-</section>
+</div>

@@ -1,7 +1,4 @@
-<section ng-controller="UserController" ng-init="findOne()">
-    <div class="starter-template">
-        <h1>&nbsp;</h1>
-    </div>
+<div ng-controller="UserController" ng-init="findOne()">
     <ul class="collection">
         <li class="collection-item avatar">
             <p><img ng-src="{{user.headimgurl}}" alt="" class="circle"> &nbsp;微信昵称: {{user.nickname}}</p>
@@ -42,8 +39,8 @@
                 </select>
             </div>
             <div class="col s5 offset-s3"> 
-                <button class="btn waves-effect waves-light teal lighten-3" ng-click="">营地订单</button> &nbsp;
-                <button class="btn waves-effect waves-light teal lighten-3" ng-click="">问卷情况</button>
+                <a href="/#/orders?openid={{user.openid}}" class="waves-effect waves-light btn teal lighten-3">营地订单</a>&nbsp;
+                <a href="/#/surveys/{{user.openid}}" class="waves-effect waves-light btn teal lighten-3">查看问卷</a>
             </div>
         </li>
         <li class="collection-item row ">
@@ -55,12 +52,12 @@
                 </div>
             </div>
             <div class="input-field col s6 ">
-                <textarea id="memo " class="materialize-textarea " ng-model="user.memo "></textarea>
-                <label for="memo " class="active "> <i class="mdi-editor-mode-edit"></i> &nbsp;备注</label>
+                <textarea id="memo" class="materialize-textarea" ng-model="user.memo"></textarea>
+                <label for="memo" class="active "> <i class="mdi-editor-mode-edit"></i> &nbsp;备注</label>
             </div>
         </li>
     </ul>
     <div class="row">
         <button class="btn waves-effect waves-light col s2 offset-s8" ng-click="update() " name="action ">保存修改</button>
     </div>
-</section>
+</div>

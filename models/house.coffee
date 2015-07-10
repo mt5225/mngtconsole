@@ -15,6 +15,7 @@ House = new Schema(
     capacity: String,
     story: String,
     owner_story: String
+    tribe: String
 )
 
 module.exports = mongoose.model('House', House)

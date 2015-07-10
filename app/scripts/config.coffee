@@ -15,6 +15,9 @@ meanApp.config ['$routeProvider',
           .when '/houses',
             templateUrl: 'views/houses.html'
             controller: 'HouseController'
+          .when '/houses/:houseId',
+            templateUrl: 'views/houseeditor.html'
+            controller: 'HouseController'
           .when '/orders',
             templateUrl: 'views/orders.html'
             controller: 'OrderController'

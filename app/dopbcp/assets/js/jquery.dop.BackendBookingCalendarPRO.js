@@ -506,7 +506,7 @@
                 methods_calendar.vars.currYear = CurrYear;
                 methods_calendar.vars.currMonth = CurrMonth;
 
-                $('.DOPBCPCalendar-navigation .month-year', Container).html(MonthNames[(CurrMonth%12 !== 0 ? CurrMonth%12:12)-1]+' '+CurrYear);                        
+                $('.DOPBCPCalendar-navigation .dopbcp-month-year', Container).html(MonthNames[(CurrMonth%12 !== 0 ? CurrMonth%12:12)-1]+' '+CurrYear);                        
                 $('.DOPBCPCalendar-calendar', Container).html('');                        
                 
                 for (i=1; i<=noMonths; i++){

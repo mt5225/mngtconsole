@@ -1,10 +1,8 @@
-<section ng-controller="SurveyController" ng-init="find()">
-    <div class="starter-template">
-        <h1>&nbsp;</h1>
-    </div>
+<div ng-controller="SurveyController" ng-init="find()">
+    <br>
     <table class="table striped">
         <thead>
-            <tr>
+            <tr class="teal lighten-4">
                 <th>问卷类型</th>
                 <th>填写时间</th>
                 <th>填写人</th>
@@ -22,4 +20,4 @@
     <p> &nbsp;共{{length}}条问卷记录 &nbsp;
         <button class="btn waves-effect waves-light" ng-click="export()" name="action">导出到本地</button>
     </p>
-</section>
+</div>

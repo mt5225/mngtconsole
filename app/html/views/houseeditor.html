@@ -1,0 +1,42 @@
+<div ng-controller="HouseController" ng-init="findOne()">
+    <br>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5> 营地名： {{house.name}} &nbsp;&nbsp;&nbsp;
+                <button class="btn waves-effect waves-light" ng-click="update()" name="action">保存修改</button>
+            </h5>
+        </li>
+        <li class="collection-item">
+            所属部落：
+            <select class="browser-default" ng-model="house.tribe">
+                <option value="" disabled selected>指定所属部落</option>
+                <option value="石舍">石舍</option>
+                <option value="土屋">土屋</option>
+            </select>
+        </li>
+        <li class="collection-item">
+            <div>
+                <label for="description" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地描述</label>
+                <textarea id="description" class="materialize-textarea" ng-model="house.description"></textarea>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>
+                <label for="story" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地故事</label>
+                <textarea id="story" class="materialize-textarea" ng-model="house.story"></textarea>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>
+                <label for="owner_story" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营主故事</label>
+                <textarea id="owner_story" class="materialize-textarea" ng-model="house.owner_story"></textarea>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>
+                <label for="facility" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地设施</label>
+                <textarea id="facility" class="materialize-textarea" ng-model="house.facility"></textarea>
+            </div>
+        </li>
+    </ul>
+</div>

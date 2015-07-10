@@ -135,10 +135,10 @@ gulp.task 'cal', () ->
 
 gulp.task 'default', ['styles', 'html', 'jquery', 'bowerjs', 'bowercss', 'assets', 'fonts', 'cal']
 
-gulp.task 'dev', ['default', 'scripts', 'watch']
-
 gulp.task 'compile', () ->
   runSequence 'clean', 'default', 'scripts'
+
+gulp.task 'dev', ['compile', 'watch']
 
 gulp.task 'run-remote-web', () ->
   runSequence 'clean-remote-web', 'upload-web', 'restart'

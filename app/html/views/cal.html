@@ -1,23 +1,21 @@
-<div ng-controller="CalController" ng-init="find()">    
-<br/><br/><br/><br/>
-    <a id="currentHouse" class="waves-effect waves-light btn"></a>
-    <br/>
-    <div class="col s6 left-align">
-      <select id="houselist" class="browser-default" ng-options="house.name for house in houses track by house.id" ng-model="selectedOption" ng-change="changeValue(selectedOption)">
-        <option value="" selected>请选择营地</option>
-      </select>      
-    </div> 
-   
-<br/><br/>
-<div id="backend"></div>
+<div ng-controller="CalController" ng-init="find()" class="row">
+    <br>
+    <div class="col s2">
+        <a id="currentHouse" class="waves-effect waves-light btn"></a>
+    </div>
+    <div class="col s4 left-align">
+        <select id="houselist" class="browser-default" ng-options="house.name for house in houses track by house.id" ng-model="selectedOption" ng-change="changeValue(selectedOption)">
+            <option value="" selected>请选择营地</option>
+        </select>
+    </div>
+    <br><br><br>
+    <div id="backend"></div>
 </div>
-
 <script>
-
 $(document).ready(function() {
     var houseId = 'H001';
     var houseName = '喜乐窝';
-    if(window.location.href.indexOf('?') > 0) {
+    if (window.location.href.indexOf('?') > 0) {
         vars = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
         houseId = vars[0].split('=')[1];
         houseName = decodeURIComponent(vars[1].split('=')[1]);
@@ -30,6 +28,4 @@ $(document).ready(function() {
         'saveURL': 'api/cal/savecal'
     });
 });
-
 </script>
-

@@ -1,19 +1,21 @@
 <section ng-controller="HouseController" ng-init="find()">
-
-    <div class="starter-template">
-        <h1>House List</h1>
-    </div>
-
+    <br>
     <table class="table striped">
         <thead>
-            <tr><th>name</th><th>owner</th><th>description</th></tr>
+            <tr class="teal lighten-4">
+                <th>营地名</th>
+                <th>所在部落</th>
+                <th>营地主人</th>
+                <th>营地描述</th>
+            </tr>
         </thead>
         <tr ng-repeat="house in houses">
-            <td>{{house.name}}</td>
+            <td>
+                <a data-ng-href="#/houses/{{house.id}}"> <i class="mdi-editor-mode-edit"></i> {{house.name}} </a>
+            </td>
+            <td>{{house.tribe}}</td>
             <td>{{house.owner}}</td>
             <td>{{house.description}}</td>
-            <td><i class="mdi-editor-mode-edit"></i></td>
         </tr>
     </table>
-
 </section>

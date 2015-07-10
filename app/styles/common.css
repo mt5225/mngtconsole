@@ -29,7 +29,7 @@ nav {
 }
 
 .shortten {
-    width: 480px;
+    width: 500px;
     overflow: auto;
     display: inline-block;
     white-space: nowrap;
