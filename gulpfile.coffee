@@ -29,7 +29,7 @@ path =
   bower: 'app/components'
   html: 'app/html/**/*.html'
   assets: 'app/assets/*'
-  fonts: ['app/components/materialize/font/**', '!app/components/materialize/font/roboto{,/**}']
+  fonts: ['app/components/materialize/font/**']
   public: '_public/**'
   bin: ['**', '!_public/**', '!app/**', '!data/**', '!node_modules/**', '!test/**']
 

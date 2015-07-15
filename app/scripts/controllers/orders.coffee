@@ -72,11 +72,13 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
     )
     
   $scope.cancelOrder = () ->
-    AvailableService.cancelOrder $scope.order
-    .then((payload) ->
-      $log.debug payload.data
-      paramService.set payload.data
-      $location.path "orders"
+    $scope.order.$save ( () ->
+      AvailableService.cancelOrder $scope.order
+      .then((payload) ->
+        $log.debug payload.data
+        paramService.set payload.data
+        $location.path "orders"
+      )
     )
     
   $scope.close = () ->

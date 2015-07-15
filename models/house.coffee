@@ -15,7 +15,12 @@ House = new Schema(
     capacity: String,
     story: String,
     owner_story: String
+    facility: String
     tribe: String
+    house_pic_list: []
+    owner_pic_list: []
+    facility_pic_list: []
 )
 
 module.exports = mongoose.model('House', House)
+

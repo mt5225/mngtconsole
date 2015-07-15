@@ -3,7 +3,8 @@
     <ul class="collection with-header">
         <li class="collection-header">
             <h5> 营地名： {{house.name}} &nbsp;&nbsp;&nbsp;
-                <button class="btn waves-effect waves-light" ng-click="update()" name="action">保存修改</button>
+                <button class="btn waves-effect waves-light red" ng-click="update()" name="action">保存修改</button>
+                <button class="btn waves-effect waves-light" ng-click="close()" name="action">返 回</button>
             </h5>
         </li>
         <li class="collection-item">
@@ -12,11 +13,12 @@
                 <option value="" disabled selected>指定所属部落</option>
                 <option value="石舍">石舍</option>
                 <option value="土屋">土屋</option>
+                <option value="土屋">玫瑰部落</option>
             </select>
         </li>
         <li class="collection-item">
             <div>
-                <label for="description" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地描述</label>
+                <label for="description" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地描述(限30字以内)</label>
                 <textarea id="description" class="materialize-textarea" ng-model="house.description"></textarea>
             </div>
         </li>
@@ -28,14 +30,32 @@
         </li>
         <li class="collection-item">
             <div>
+                <label for="housepic" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地图片，请在英文状态用冒号隔开</label>
+                <textarea id="housepic" class="materialize-textarea" ng-model="housepic"></textarea>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>
                 <label for="owner_story" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营主故事</label>
                 <textarea id="owner_story" class="materialize-textarea" ng-model="house.owner_story"></textarea>
             </div>
         </li>
         <li class="collection-item">
             <div>
+                <label for="ownerpic" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营主图片，请在英文状态用冒号隔开</label>
+                <textarea id="ownerpic" class="materialize-textarea" ng-model="ownerpic"></textarea>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>
                 <label for="facility" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;营地设施</label>
                 <textarea id="facility" class="materialize-textarea" ng-model="house.facility"></textarea>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div>
+                <label for="facpic" class="active"> <i class="mdi-editor-mode-edit"></i> &nbsp;设施图片，请在英文状态用冒号隔开</label>
+                <textarea id="facpic" class="materialize-textarea" ng-model="facpic"></textarea>
             </div>
         </li>
     </ul>
