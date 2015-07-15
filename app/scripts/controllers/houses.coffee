@@ -8,9 +8,9 @@ meanApp.controller 'HouseController', ($scope, Global, HouseService, $log, $rout
     HouseService.get {id: $routeParams.houseId}
     .$promise.then((payload) ->
       $scope.house = payload
-      $scope.housepic = payload.house_pic_list.join ':'
-      $scope.ownerpic = payload.owner_pic_list.join ':'
-      $scope.facpic = payload.facility_pic_list.join ':'
+      $scope.housepic = payload.house_pic_list.join ','
+      $scope.ownerpic = payload.owner_pic_list.join ','
+      $scope.facpic = payload.facility_pic_list.join ','
     )
 
   $scope.close = () ->
@@ -21,19 +21,19 @@ meanApp.controller 'HouseController', ($scope, Global, HouseService, $log, $rout
     #split string to array
     housePicArray = []
     if $scope.housepic?
-      housePicArray = $scope.housepic.split ':'
+      housePicArray = $scope.housepic.split ','
       $log.debug  housePicArray
     $scope.house.house_pic_list = housePicArray
 
     ownerPicArray = []
     if $scope.ownerpic?
-      ownerPicArray = $scope.ownerpic.split ':'
+      ownerPicArray = $scope.ownerpic.split ','
       $log.debug ownerPicArray
     $scope.house.owner_pic_list = ownerPicArray
 
     facPicArray = []
     if $scope.facpic?
-      facPicArray = $scope.facpic.split ':'
+      facPicArray = $scope.facpic.split ','
       $log.debug facPicArray
     $scope.house.facility_pic_list = facPicArray  
 
