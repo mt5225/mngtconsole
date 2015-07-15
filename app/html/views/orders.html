@@ -8,6 +8,7 @@
                 <th st-sort="houseName">营地</th>
                 <th st-sort="checkInDay">入住日期</th>
                 <th>退房</th>
+                <th st-sort="status">总价</th>
                 <th st-sort="wechatNickName">昵称</th>
                 <th st-sort="status">状态</th>
             </tr>
@@ -15,20 +16,26 @@
                 <th>
                     <input st-search="orderId" placeholder="搜订单号" class="input-sm form-control" type="search" />
                 </th>
-                <th colspan="3">
+                <th colspan="4">
                     <input st-search placeholder="全局搜索" class="input-sm form-control" type="search" />
+                </th>
+                <th colspan="2">&nbsp;</th>
+                <th>
+                   <a class="btn-floating btn waves-effect waves-light" ng-href="/#/orders/create"><i class="mdi-content-add"></i></a>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr st-select-row="row" ng-repeat="order in displayedCollection">
+            <tr st-select-row="row" ng-repeat="order in displayedCollection" ng-class="{'red lighten-4': highlight(order)}">
                 <td>
-                    <a data-ng-href="#/orders/{{order.orderId}}"> <i class="mdi-editor-mode-edit"></i> {{order.orderId}} </a>
+                    <a data-ng-href="#/orders/{{order.orderId}}" ng-class="{'readonly': order.status === '订单取消'}"> 
+                        <i class="mdi-editor-mode-edit" ng-show="order.status != '订单取消'"></i> {{order.orderId}} </a>
                 </td>
                 <td>{{order.createDay}}</td>
                 <td>{{order.houseName}}</td>
                 <td>{{order.checkInDay}}</td>
                 <td>{{order.checkOutDay}}</td>
+                <td>{{order.totalPrice}}</td>
                 <td>{{order.wechatNickName}}</td>
                 <td>{{order.status}}</td>
             </tr>

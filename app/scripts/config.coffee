@@ -21,6 +21,9 @@ meanApp.config ['$routeProvider',
           .when '/orders',
             templateUrl: 'views/orders.html'
             controller: 'OrderController'
+          .when '/orders/create',
+            templateUrl: 'views/neworder.html'
+            controller: 'OrderController'
           .when '/orders/:orderId',
             templateUrl: 'views/ordereditor.html'
             controller: 'OrderController'
@@ -28,7 +31,7 @@ meanApp.config ['$routeProvider',
             templateUrl: 'views/cal.html'
             controller: 'CalController'
           .when '/surveys',
-            templateUrl: 'views/surveys.html'
+            templateUrl: 'views/surveys.html' 
             controller: 'SurveyController'
           .when '/surveys/:openid',
             templateUrl: 'views/surveys.html'
@@ -36,6 +39,9 @@ meanApp.config ['$routeProvider',
           .when '/dashboard',
             templateUrl: 'views/dashboard.html'
             controller: 'DashboardController'
+          .when '/available',
+            templateUrl: 'views/available.html'
+            controller: 'AvailableController'
           .when '/500',
             templateUrl: 'views/500.html'
           .when '/404',

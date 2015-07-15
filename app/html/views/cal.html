@@ -1,7 +1,7 @@
 <div ng-controller="CalController" ng-init="find()" class="row">
     <br>
     <div class="col s2">
-        <a id="currentHouse" class="waves-effect waves-light btn"></a>
+        <a id="currentHouse" class="waves-effect waves-light btn red"></a>
     </div>
     <div class="col s4 left-align">
         <select id="houselist" class="browser-default" ng-options="house.name for house in houses track by house.id" ng-model="selectedOption" ng-change="changeValue(selectedOption)">

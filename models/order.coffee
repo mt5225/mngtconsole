@@ -15,9 +15,7 @@ OrderSchema = new Schema (
   houseName: String
   totalPrice: String
   priceByDayArray:  { type : Array , "default" : [] }
-  email: String
-  cell: String
-  plan: String
+  memo: String
 )
 
 module.exports = mongoose.model('Order', OrderSchema)

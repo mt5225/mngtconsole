@@ -21,7 +21,7 @@ nav {
     background-color: transparent;
     box-shadow: none;
 }
-/*get rid of robot font-family*/
+
 
 .fillheight {
     height: 40px; 
@@ -35,6 +35,11 @@ nav {
     white-space: nowrap;
 }
 
+.readonly {
+   color: gray;
+}
+
+/*get rid of robot font-family*/
 html {
     font-family: Verdana, Geneva, sans-serif;
 }

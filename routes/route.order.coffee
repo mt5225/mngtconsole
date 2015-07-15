@@ -29,3 +29,11 @@ module.exports = (app) ->
         res.status(500).json err
       else
         res.status(200).json order
+
+  app.post '/api/orders', auth.none, (req, res) ->
+    order_service.updateOrder req, (err, order) ->
+      if err
+        logger.error err
+        res.status(500).json err
+      else
+        res.status(200).json order

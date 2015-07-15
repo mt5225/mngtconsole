@@ -12,7 +12,9 @@ module.exports =
     Order.findOne {orderId: id}, (err, order) -> callback err, order
 
   updateOrder: (req, callback) ->
-    order = req.body
-    Order.update { orderId: order.orderId }, { $set: status: order.status }, (err, order) ->
+    order = new Order(req.body)
+    upsertData = order.toObject()
+    delete upsertData._id
+    Order.update({orderId: order.orderId}, upsertData, {upsert: true}, (err) ->
       callback err, order
-
+    )

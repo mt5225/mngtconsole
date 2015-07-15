@@ -1,0 +1,28 @@
+<div class="row">
+    <br>
+    <p class="col s4">入住时间:
+        <input type="date" class="datepicker" ng-model="checkInDay">
+    </p>
+    <p class="col s4">退房时间:
+        <input type="date" id="checkOutDay" ng-model="checkOutDay">
+    </p>
+    <br>
+    <button class="btn waves-effect waves-light" ng-click="searchAvailableHouse()" name="action">查询空闲营地</button>
+    <br>
+    <div ng-show="showResult">
+        <table class="table striped">
+            <thead>
+                <tr class="grey lighten-2">
+                    <th>营地编号</th>
+                    <th>营地名</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tr ng-class="(item.status == '空闲') ? 'teal lighten-4' : ''" ng-repeat="item in availableArray">
+                <td>{{item.houseInfo.houseId}}</td>
+                <td>{{item.houseInfo.name}}</td>
+                <td>{{item.status}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
