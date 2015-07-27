@@ -13,18 +13,12 @@ require './models/cal'
 Order = mongoose.model 'Order'
 House = mongoose.model 'House'
 HouseCal = {}
-for num in [1..12]
+for num in [1..99]
   if num < 10 
     id = 'H00' + num
   else
     id = 'H0' + num
   HouseCal[id] = mongoose.model id
-
-#get list of unpay and expired orders
-get_expired_order = () ->
-  console.log "query expired orders"
-  query = { $and: [ {status: { $ne: "支付成功" }}, {status: { $ne: "订单取消" }} ] }
-  Order.find(query).exec()
 
 mark_expired_order_as_cancel = (order) ->
   logger.info "scan order [#{order.orderId}] submit time : #{order.createDay} status: #{order.status}"
@@ -34,6 +28,12 @@ mark_expired_order_as_cancel = (order) ->
     Q(Order.update({ orderId: order.orderId }, { $set: status: "订单取消" }).exec())
     .then () ->
       release_house order
+
+#get list of unpay and expired orders
+get_expired_order = () ->
+  console.log "query expired orders"
+  query = { $and: [ {status: { $ne: "订单取消" }}, {status: { $ne: "预订成功" }} ] }
+  Order.find(query).exec()
 
 mark_avaible = (cal, dayStr) ->
   cal.update({day: dayStr}, {$set: "info.status": "available"}).exec()

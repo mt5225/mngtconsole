@@ -7,14 +7,42 @@
                 <button class="btn waves-effect waves-light" ng-click="close()" name="action">返 回</button>
             </h5>
         </li>
-        <li class="collection-item">
-            所属部落：
-            <select class="browser-default" ng-model="house.tribe">
-                <option value="" disabled selected>指定所属部落</option>
-                <option value="石舍">石舍</option>
-                <option value="土屋">土屋</option>
-                <option value="土屋">玫瑰部落</option>
-            </select>
+        <li class="collection-item row">
+            <div class="col s4">
+                所属部落：
+                <select class="browser-default" ng-model="house.tribe">
+                    <option value="" disabled selected>指定所属部落</option>
+                    <option value="石舍香樟">石舍香樟</option>
+                    <option value="芦茨土屋">芦茨土屋</option>
+                    <option value="凤溪玫瑰">凤溪玫瑰</option>
+                </select>
+            </div>
+            <div class="input-field col s2 offset-s1">
+                <input id="code" type="text" class="validate" ng-model="house.display_id">
+                <label for="code" class="active">营地编号</label>
+            </div>
+            <div class="input-field col s1">
+                <input id="capacity" type="text" class="validate" ng-model="house.capacity">
+                <label for="capacity" class="active">入住人数</label>
+            </div>
+            <div class="input-field col s1">
+                <input id="average_price" type="text" class="validate" ng-model="house.average_price">
+                <label for="average_price" class="active">均价</label>
+            </div>
+            <div class="input-field col s1 offset-s1">
+                <input id="likes" type="text" class="validate" ng-model="house.likes">
+                <label for="likes" class="active">点赞数</label>
+            </div>
+        </li>
+        <li class="collection-item row">
+            <div class="input-field col s2">
+                <input id="owner" type="text" class="validate" ng-model="house.owner">
+                <label for="owner" class="active">营主昵称</label>
+            </div>
+            <div class="input-field col s9 offset-s1">
+                <input id="avator" type="text" class="validate" ng-model="house.avator">
+                <label for="avator" class="active">营主头像</label>
+            </div>
         </li>
         <li class="collection-item">
             <div>

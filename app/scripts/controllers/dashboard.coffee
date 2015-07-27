@@ -44,8 +44,20 @@ meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseSe
     status = []
     for order in $scope.orders
       if order.houseName == housename && dayStr >= order.checkInDay && dayStr < order.checkOutDay
-        status.push order.orderId
-        status.push order.wechatNickName
-        status.push order.status
-        break
+        status.push order
     status
+
+  $scope.show = (order) ->
+    $log.debug $scope.displayOption
+    if $scope.displayOption
+      return order.status is '预订成功' 
+    else
+      return true
+  
+  $scope.getClass = (order) ->
+    switch order.status
+      when '预订成功' then 'teal lighten-3'
+      when '订单取消' then 'blue-grey lighten-4'
+      when '已提交' then 'deep-orange lighten-4'
+      else 'grey lighten-2' 
+ 

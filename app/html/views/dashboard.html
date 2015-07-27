@@ -1,21 +1,30 @@
 <div ng-controller="DashboardController" ng-init="find(0)">
     <br>
-    <div>
-        <button class="btn waves-effect waves-light" ng-click="find(0)"> 本 周
-            <i class="material-icons"></i>
-        </button>
-        <button class="btn waves-effect waves-light" ng-click="find(1)"> 下 周
-            <i class="material-icons"></i>
-        </button>
-        <button class="btn waves-effect waves-light" ng-click="find(2)"> ＋2 周
-            <i class="material-icons"></i>
-        </button>
-        <button class="btn waves-effect waves-light" ng-click="find(3)"> ＋3 周
-            <i class="material-icons"></i>
-        </button>
-        <button class="btn waves-effect waves-light" ng-click="find(4)"> ＋4 周
-            <i class="material-icons"></i>
-        </button>
+    <div class="row">
+        <div class = "col s8">
+            <button class="btn waves-effect waves-light" ng-click="find(0)"> 本 周
+                <i class="material-icons"></i>
+            </button>
+            <button class="btn waves-effect waves-light" ng-click="find(1)"> 下 周
+                <i class="material-icons"></i>
+            </button>
+            <button class="btn waves-effect waves-light" ng-click="find(2)"> ＋2 周
+                <i class="material-icons"></i>
+            </button>
+            <button class="btn waves-effect waves-light" ng-click="find(3)"> ＋3 周
+                <i class="material-icons"></i>
+            </button>
+            <button class="btn waves-effect waves-light" ng-click="find(4)"> ＋4 周
+                <i class="material-icons"></i>
+            </button>
+        </div>
+        <div class="switch col s4">
+            <label>
+                显示全部
+                <input type="checkbox" checked ng-model="displayOption">
+                <span class="lever"></span> 预订成功
+            </label>
+        </div>
     </div>
     <br>
     <table class="table bordered striped">
@@ -30,8 +39,12 @@
             <tr ng-repeat="house in houses">
                 <td>{{house.name}}</td>
                 <td ng-repeat="day in days">
-                    <ul class="collection">
-                        <li class="collection-item teal lighten-4" ng-repeat="i in getOrder(day, house.name)">{{i}}</li>
+                    <ul class="collection" ng-repeat="order in getOrder(day, house.name)">
+                        <li class="collection-item teal lighten-4" ng-class="getClass(order)" ng-show="show(order)">
+                            <a ng-href="/#/orders/{{order.orderId}}">{{order.orderId}}</a>
+                            <br> {{order.wechatNickName}}
+                            <br> {{order.status}}
+                        </li>
                     </ul>
                 </td>
             </tr>

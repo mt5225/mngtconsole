@@ -1,4 +1,4 @@
-meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseService, $location, $log, $routeParams, paramService, uuidService, dateService, AvailableService, $window) ->
+meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseService, $location, $log, $routeParams, paramService, uuidService, dateService, AvailableService, $window, API_ENDPOINT, APP_URL, MessageService) ->
 
   $scope.global = Global
   $scope.orderByField = 'createDay'
@@ -34,6 +34,8 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
   $scope.update = () ->
     $scope.order.$save ( () ->
       paramService.set $scope.order
+      $log.debug "order #{$scope.order.orderId} status is #{$scope.order.status}"
+      msgBookSuccess $scope.order if $scope.order.status is "预订成功"
       $location.path "orders",
       (errorResponse) ->
         $log.debug errorResponse.data.message
@@ -74,13 +76,55 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
   $scope.cancelOrder = () ->
     $scope.order.$save ( () ->
       AvailableService.cancelOrder $scope.order
+      msgOrderCancel $scope.order
       .then((payload) ->
         $log.debug payload.data
         paramService.set payload.data
         $location.path "orders"
       )
     )
-    
+   
+  #notify user order cancel
+  msgOrderCancel = (orderDetails) ->
+    msg = {}
+    msg.touser = $scope.order.wechatOpenID
+    msg.template_name = "order_cancel"
+    msg.url = "#{APP_URL}/#/myorder?openid=#{msg.touser}"
+    msg.data = 
+      first: value: "漫生活管家已经将您的#{orderDetails.houseName}订单取消"
+      HotelName: value: "#{orderDetails.houseName}"
+      CheckInDate: value: "#{orderDetails.checkInDay}"
+      CheckOutDate: value: "#{orderDetails.checkOutDay}"
+      remark: value: "编号为#{orderDetails.orderId} 的订单已成功取消"
+    #add some color
+    for item of msg.data
+      msg.data[item].color = "#01579b"
+    $log.debug msg
+    MessageService.send msg
+
+  #notify user order cancel
+  msgBookSuccess = (orderDetails) ->
+    $log.debug "notify user order is success"
+    tribeName = 'N/A'
+    for house in houses
+      tribeName = house.tribe if orderDetails.houseId is house.id
+    msg = {}
+    msg.touser = $scope.order.wechatOpenID
+    msg.template_name = "book_success"
+    msg.url = "#{APP_URL}/#/myorder?openid=#{msg.touser}"
+    msg.data = 
+      first: value: "漫生活管家已经将您的#{orderDetails.houseName}订单设定为预订成功, 订单号 #{orderDetails.orderId}"
+      hotelName: value: "#{tribeName}"
+      roomName: value: "#{orderDetails.houseName}"
+      date: value: "#{orderDetails.checkInDay}"
+      remark: value: "您的预订已成功，#{orderDetails.houseName}欢迎您"
+    #add some color
+    for item of msg.data
+      msg.data[item].color = "#01579b"
+    $log.debug msg
+    MessageService.send msg
+        
+
   $scope.close = () ->
     $location.path "orders"
 

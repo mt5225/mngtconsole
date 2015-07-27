@@ -4,9 +4,11 @@
             <h4>[修改] 订单号： {{order.orderId}}</h4></li>
         <li class="collection-item row">
             <div class="col s2">营地: <b>{{order.houseName}}</b> </div>
+            <div class="col s4 offset-s2">下单时间: <b>{{order.createDay}}</b> </div>
         </li>
         <li class="collection-item">
-            <p>入住时间: {{order.checkInDay}} &nbsp; 退房: {{order.checkOutDay}} &nbsp; 客人微信昵称: {{order.wechatNickName}}</p>
+            <p>入住时间: {{order.checkInDay}} &nbsp; 退房: {{order.checkOutDay}}</p>
+            <p>客人微信昵称: &nbsp;<a href="#/users/{{order.wechatOpenID}}"> {{order.wechatNickName}} <i class="mdi-editor-mode-edit"></i></a></p>
         </li>
         <li class="collection-item row">
             <div class="col s4">
@@ -20,12 +22,12 @@
                 <div>订单当前状态： <b> {{orderStatus}}</b> </div>
                 <div ng-show="order.status != '订单取消'">
                     更改为：
-                    <select class="browser-default" ng-model="order.status" >
+                    <select class="browser-default" ng-model="order.status">
                         <option value="" disabled selected>指定订单状态</option>
                         <option value="已提交">已提交</option>
-                        <option value="支付成功">支付成功</option>
                         <option value="支付失败">支付失败</option>
                         <option value="支付已取消">支付已取消</option>
+                        <option value="预订成功">预订成功</option>
                     </select>
                 </div>
             </div>

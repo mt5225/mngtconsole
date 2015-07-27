@@ -3,6 +3,7 @@
     <table class="table striped">
         <thead>
             <tr class="teal lighten-4">
+                <th>编号</th>
                 <th>营地名</th>
                 <th>所在部落</th>
                 <th>营地主人</th>
@@ -10,6 +11,7 @@
             </tr>
         </thead>
         <tr ng-repeat="house in houses">
+            <td>{{house.display_id}}</td>
             <td>
                 <a data-ng-href="#/houses/{{house.id}}"> <i class="mdi-editor-mode-edit"></i> {{house.name}} </a>
             </td>

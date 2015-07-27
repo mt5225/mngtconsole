@@ -3,7 +3,6 @@ BasicStrategy = require('passport-http').BasicStrategy
 MngtUser = require("../models/mngtuser")
 
 module.exports = (passport) ->
-
   passport.use new BasicStrategy ({}), (username, password, done) ->
     MngtUser.findOne { username: username }, (err, user) ->
       if err then return done(err)

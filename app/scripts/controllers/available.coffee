@@ -6,13 +6,13 @@ meanApp.controller 'AvailableController', ($scope, Global, AvailableService, Hou
     #list all Houses
     HouseService.query()
     .$promise.then ((payload) ->  
-      $log.debug payload
       promises = _.map payload, (house) ->
         $log.debug house  
         order = {}
         order.checkInDay = dateService.formatDate $scope.checkInDay
         order.checkOutDay = dateService.formatDate $scope.checkOutDay
         order.houseId = house.id
+        order.display_id = house.display_id
         order.name = house.name
         AvailableService.checkAvailable order
       $q.all(promises)

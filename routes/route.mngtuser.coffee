@@ -18,6 +18,8 @@ module.exports = (app) ->
       res.send err, mngtuser
 
   app.post '/signin', auth.none, (req, res) ->
+    logger.debug req.body
+    res.status(200).json req.body
 
   app.post '/signup', auth.none, (req, res) ->
     logger.info "signup new management user"

@@ -1,7 +1,7 @@
 logger = require '../config/logger'
 mongoose = require 'mongoose'
 Cal = {}
-for num in [1..12]
+for num in [1..99]
   if num < 10 
     id = 'H00' + num
   else

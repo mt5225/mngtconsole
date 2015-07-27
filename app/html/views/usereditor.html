@@ -1,8 +1,14 @@
 <div ng-controller="UserController" ng-init="findOne()">
     <ul class="collection">
         <li class="collection-item avatar">
-            <p><img ng-src="{{user.headimgurl}}" alt="" class="circle"> &nbsp;微信昵称: {{user.nickname}}</p>
-            <p><i class="mdi-maps-beenhere"></i>&nbsp;{{user.city}} {{user.province}} {{user.country}}</p>
+            <div class="row">
+                <div class="col s4">
+                    <p><img ng-src="{{user.headimgurl}}" alt="" class="circle"> &nbsp;微信昵称: {{user.nickname}}</p>
+                    <p><i class="mdi-maps-beenhere"></i>&nbsp;{{user.city}} {{user.province}} {{user.country}}</p>
+                </div>
+                <a href="/#/orders?openid={{user.openid}}" class="col s2 offset-s1 waves-effect waves-light btn">营地订单</a>
+                <a href="/#/surveys/{{user.openid}}" class="col s2 offset-s1 left-align waves-effect waves-light btn">查看问卷</a>
+            </div>
         </li>
         <li class="collection-item">
             <p><i class="mdi-action-account-circle"></i>&nbsp;微信openid: {{user.openid}}</p>
@@ -38,16 +44,12 @@
                     <option value="合伙人">合伙人</option>
                 </select>
             </div>
-            <div class="col s5 offset-s3"> 
-                <a href="/#/orders?openid={{user.openid}}" class="waves-effect waves-light btn teal lighten-3">营地订单</a>&nbsp;
-                <a href="/#/surveys/{{user.openid}}" class="waves-effect waves-light btn teal lighten-3">查看问卷</a>
-            </div>
         </li>
         <li class="collection-item row ">
             <div class="col s6">
                 <p>&nbsp;个人爱好</p>
                 <div ng-repeat="fruitName in fruits" class="col s4">
-                    <input type="checkbox" class="filled-in" id="{{fruitName}}" ng-checked="selection.indexOf(fruitName) > -1" ng-click="toggleSelection(fruitName)"/>
+                    <input type="checkbox" class="filled-in" id="{{fruitName}}" ng-checked="selection.indexOf(fruitName) > -1" ng-click="toggleSelection(fruitName)" />
                     <label for="{{fruitName}}">{{fruitName}}</label>
                 </div>
             </div>
@@ -58,6 +60,7 @@
         </li>
     </ul>
     <div class="row">
-        <button class="btn waves-effect waves-light col s2 offset-s8" ng-click="update() " name="action ">保存修改</button>
+        <button class="btn waves-effect waves-light red col s2 offset-s7" ng-click="update() " name="action ">保存修改</button>
+        <button class="btn waves-effect waves-light col s2 offset-s1" ng-click="close()" name="action">返 回</button>
     </div>
 </div>

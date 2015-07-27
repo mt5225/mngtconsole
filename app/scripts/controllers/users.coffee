@@ -6,6 +6,9 @@ meanApp.controller 'UserController', ($scope, Global, UserService, $log, $routeP
   $scope.find = () ->
     $scope.users = UserService.query()
 
+  $scope.close = () ->
+    $location.path "users"
+
   $scope.findOne = () ->
     $log.debug "user openid = #{$routeParams.openid}"
     UserService.get({openid: $routeParams.openid})
