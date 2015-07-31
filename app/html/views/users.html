@@ -5,6 +5,7 @@
             <input ng-model="searchText" id="user_search" type="text" class="validate">
             <label for="user_search">用户搜索</label>
         </div>
+        <p class="flow-text col s6"> 共 <b>{{totalUser}}</b> 份用户资料</p>
     </div>
     <div class="row">
         <div class="col s4" ng-repeat="user in users | filter:searchText">

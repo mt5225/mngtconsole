@@ -1,4 +1,9 @@
 meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseService, $location, $log) ->
+  
+  if Global.authenticated isnt true
+    $location.path "login" 
+    return
+  
   Date::addDays = (days) ->
     dat = new Date(@valueOf())
     dat.setDate dat.getDate() + days

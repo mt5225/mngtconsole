@@ -1,8 +1,17 @@
 meanApp.controller 'HouseController', ($scope, Global, HouseService, $log, $routeParams, $location) ->
+  if Global.authenticated isnt true
+    $location.path "login" 
+    return
+    
   $scope.global = Global
   $scope.find = () ->
     $log.debug "get house list"
-    $scope.houses = HouseService.query()
+    sortArray = HouseService.query()
+    sortArray.sort (a, b) ->
+      switch a.display_id > b.display_id
+        when true then 1
+        when false then -1
+    $scope.houses = sortArray
   
   $scope.findOne = () ->
     HouseService.get {id: $routeParams.houseId}

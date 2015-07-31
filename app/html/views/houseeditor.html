@@ -8,7 +8,7 @@
             </h5>
         </li>
         <li class="collection-item row">
-            <div class="col s4">
+            <div class="col s3">
                 所属部落：
                 <select class="browser-default" ng-model="house.tribe">
                     <option value="" disabled selected>指定所属部落</option>
@@ -23,7 +23,11 @@
             </div>
             <div class="input-field col s1">
                 <input id="capacity" type="text" class="validate" ng-model="house.capacity">
-                <label for="capacity" class="active">入住人数</label>
+                <label for="capacity" class="active">人数</label>
+            </div>
+            <div class="input-field col s1">
+                <input id="capacity_child" type="text" class="validate" ng-model="house.capacity_child">
+                <label for="capacity_child" class="active">儿童</label>
             </div>
             <div class="input-field col s1">
                 <input id="average_price" type="text" class="validate" ng-model="house.average_price">
@@ -42,6 +46,12 @@
             <div class="input-field col s9 offset-s1">
                 <input id="avator" type="text" class="validate" ng-model="house.avator">
                 <label for="avator" class="active">营主头像</label>
+            </div>
+        </li>
+        <li class="collection-item row">
+            <div class="input-field col s9">
+                <input id="image" type="text" class="validate" ng-model="house.image">
+                <label for="image" class="active">营地主图</label>
             </div>
         </li>
         <li class="collection-item">

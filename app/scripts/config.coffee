@@ -42,6 +42,9 @@ meanApp.config ['$routeProvider',
           .when '/available',
             templateUrl: 'views/available.html'
             controller: 'AvailableController'
+          .when '/login',
+            templateUrl: 'views/login.html'
+            controller: 'LoginController'
           .when '/500',
             templateUrl: 'views/500.html'
           .when '/404',

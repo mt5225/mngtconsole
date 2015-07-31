@@ -7,6 +7,7 @@ OrderSchema = new Schema (
   checkInDay: String
   checkOutDay: String
   numOfGuest: String
+  numOfGuestChild: String
   wechatOpenID: String
   wechatNickName: String
   status: String
@@ -16,6 +17,7 @@ OrderSchema = new Schema (
   totalPrice: String
   priceByDayArray:  { type : Array , "default" : [] }
   memo: String
+  plan: String
 )
 
 module.exports = mongoose.model('Order', OrderSchema)

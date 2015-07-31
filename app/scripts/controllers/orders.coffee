@@ -1,5 +1,7 @@
 meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseService, $location, $log, $routeParams, paramService, uuidService, dateService, AvailableService, $window, API_ENDPOINT, APP_URL, MessageService) ->
-
+  if Global.authenticated isnt true
+    $location.path "login" 
+    return
   $scope.global = Global
   $scope.orderByField = 'createDay'
   $scope.reverseSort = false
@@ -95,7 +97,7 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
       HotelName: value: "#{orderDetails.houseName}"
       CheckInDate: value: "#{orderDetails.checkInDay}"
       CheckOutDate: value: "#{orderDetails.checkOutDay}"
-      remark: value: "编号为#{orderDetails.orderId} 的订单已成功取消"
+      remark: value: "编号为#{orderDetails.orderId} 的订单已成功取消, 点击本消息可查看订单历史，感谢您关注漫生活"
     #add some color
     for item of msg.data
       msg.data[item].color = "#01579b"
@@ -110,14 +112,14 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
       tribeName = house.tribe if orderDetails.houseId is house.id
     msg = {}
     msg.touser = $scope.order.wechatOpenID
-    msg.template_name = "book_success"
-    msg.url = "#{APP_URL}/#/myorder?openid=#{msg.touser}"
+    msg.template_name = "order_success"
+    msg.url = "#{APP_URL}/static/map.html?tribe=#{tribeName}"
     msg.data = 
       first: value: "漫生活管家已经将您的#{orderDetails.houseName}订单设定为预订成功, 订单号 #{orderDetails.orderId}"
       hotelName: value: "#{tribeName}"
       roomName: value: "#{orderDetails.houseName}"
       date: value: "#{orderDetails.checkInDay}"
-      remark: value: "您的预订已成功，#{orderDetails.houseName}欢迎您"
+      remark: value: "点击本消息查看驾车路线，漫生活管家联系电话0571-64668358, #{orderDetails.houseName}欢迎您"
     #add some color
     for item of msg.data
       msg.data[item].color = "#01579b"

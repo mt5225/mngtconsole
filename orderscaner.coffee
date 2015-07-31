@@ -1,5 +1,3 @@
-process.env.NODE_ENV = "orderscaner"
-
 # dependencies
 _ = require 'lodash'
 Q = require 'q'
@@ -50,13 +48,13 @@ release_house = (order) ->
 
 mongoose.connect config.DBURL
 setInterval ( () ->
-  logger.info "starting order scanner with interval #{config.INTERVAL_SECOND}"
+  logger.info "starting order scanner with interval #{config.INTERVAL_SECOND} minutes"
   logger.info "mongo connected to", config.DBURL
   Q(get_expired_order())
   .then (orders) ->
     logger.info "got all expired orders"
     promises = _.map orders, (order) ->
-      mark_expired_order_as_cancel order
+      #mark_expired_order_as_cancel order
     Q.all(promises)
     .then (tasks)->
       logger.info "scan finished, exit."

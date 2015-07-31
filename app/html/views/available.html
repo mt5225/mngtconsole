@@ -14,12 +14,14 @@
             <thead>
                 <tr class="grey darken-2 white-text">
                     <th>营地编号</th>
+                    <th>所在部落</th>
                     <th>营地名</th>
                     <th>状态</th>
                 </tr>
             </thead>
             <tr ng-class="(item.status == '空闲') ? 'teal lighten-4' : ''" ng-repeat="item in availableArray">
                 <td>{{item.houseInfo.display_id}}</td>
+                <td>{{item.houseInfo.tribe}}</td>
                 <td>{{item.houseInfo.name}}</td>
                 <td>{{item.status}}</td>
             </tr>

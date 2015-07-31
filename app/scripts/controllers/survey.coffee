@@ -1,4 +1,7 @@
-meanApp.controller 'SurveyController', ($scope, Global, SurveyService, $log, $routeParams) ->
+meanApp.controller 'SurveyController', ($scope, Global, SurveyService, $log, $routeParams, $location) ->
+  if Global.authenticated isnt true
+    $location.path "login" 
+    return
   $scope.global = Global
   $scope.find = () ->
     SurveyService.query()

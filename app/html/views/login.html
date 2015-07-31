@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>&nbsp;</h1>
+    <div class="row">
+        <img src="/assets/octocat-de-los-muertos.jpg" class="col s4 offset-s1" height="200" style="max-width: 220px" />
+        <div class="col s4 offset-s1">
+            <input type="text" ng-model="username" name="username" placeholder="用户名" required="required" autofocus="autofocus" class="form-control" />
+            <input type="password" ng-model="password" name="password" placeholder="密码" required="required" class="form-control" />
+            <button ng-click="login()" class="btn btn-lg btn-primary btn-block">登录</button><span class="clearfix"></span>
+            <div>
+                <div id="message"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>用户名或密码错误 &nbsp;  <a class="waves-effect waves-light btn" ng-click="close()">关闭</a> </h4>
+    </div>
+  </div>

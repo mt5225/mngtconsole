@@ -16,12 +16,16 @@ sshConfig = require './config.json'
 ssh = require('gulp-ssh')(
   ignoreErrors: false
   sshConfig:
-    host: 'qa.aghchina.com.cn'
+    host: 'app.aghchina.com.cn'
     port: 22
     username: sshConfig.user
     password: sshConfig.pass
+  # sshConfig:
+  #   host: 'qa.aghchina.com.cn'
+  #   port: 22
+  #   username: sshConfig.user
+  #   password: sshConfig.pass
 )
-
 
 path =
   scripts: 'app/scripts/**/*.coffee'
@@ -102,7 +106,7 @@ gulp.task 'clean', shell.task([
   'rm -rf ./_public'
 ])
 
-gulp.task 'upload-web', () ->
+gulp.task 'upload-web-qa', () ->
   gulp.src(path.public)
     .pipe sftp(
       host: 'qa.aghchina.com.cn'
@@ -118,15 +122,37 @@ gulp.task 'upload-bin', () ->
       pass: sshConfig.pass
       remotePath: '/root/mngtconsole')
 
+gulp.task 'upload-web-prod', () ->
+  gulp.src(path.public)
+    .pipe sftp(
+      host: 'app.aghchina.com.cn'
+      user: sshConfig.user
+      pass: sshConfig.pass
+      remotePath: '/root/mngtconsole/_public') 
+
+gulp.task 'upload-bin-prod', () ->
+  gulp.src(path.bin)
+    .pipe sftp(
+      host: 'app.aghchina.com.cn'
+      user: sshConfig.user
+      pass: sshConfig.pass
+      remotePath: '/root/mngtconsole')
+
 gulp.task 'clean-remote-web', ()->
   ssh.exec([
     'rm -rf /root/mngtconsole/_public'
   ], filePath: 'commands.log').pipe gulp.dest('.')
 
-gulp.task 'restart', ()->
+gulp.task 'restart-qa', ()->
   ssh.exec([
-    'forever restart f0D5', 
-    'forever restart P0MK'
+    'export NODE_ENV=qa;cd /root/mngtconsole;forever stop server.coffee;forever start -c coffee server.coffee', 
+    'export NODE_ENV=qa;cd /root/mngtconsole;forever stop orderscaner.coffee;forever start -c coffee orderscaner.coffee'
+  ], filePath: 'commands.log').pipe gulp.dest('.')
+
+gulp.task 'restart-prod', ()->
+  ssh.exec([
+    'export NODE_ENV=prod;cd /root/mngtconsole;forever stop server.coffee;forever start -c coffee server.coffee', 
+    'export NODE_ENV=prod;cd /root/mngtconsole;forever stop orderscaner.coffee;forever start -c coffee orderscaner.coffee'
   ], filePath: 'commands.log').pipe gulp.dest('.')
 
 gulp.task 'cal', () ->
@@ -140,12 +166,22 @@ gulp.task 'compile', () ->
 
 gulp.task 'dev', ['compile', 'watch']
 
-gulp.task 'run-remote-web', () ->
-  runSequence 'clean-remote-web', 'upload-web', 'restart'
+gulp.task 'run-remote-web-qa', () ->
+  runSequence 'clean-remote-web', 'upload-web-qa', 'restart-qa'
 
-gulp.task 'run-remote-bin', () ->
-  runSequence 'upload-bin', 'restart'
+gulp.task 'run-remote-bin-qa', () ->
+  runSequence 'upload-bin', 'restart-qa'
 
+gulp.task 'run-remote-qa', () ->
+  runSequence 'upload-bin', 'clean-remote-web', 'upload-web-qa', 'restart-qa'
 
+gulp.task 'run-remote-web-prod', () ->
+  runSequence 'clean-remote-web', 'upload-web-prod', 'restart-prod'
+
+gulp.task 'run-remote-bin-prod', () ->
+  runSequence 'upload-bin-prod', 'restart-prod'
+
+gulp.task 'run-remote-prod', () ->
+  runSequence 'upload-bin', 'clean-remote-web', 'upload-web-prod', 'restart-prod'
 
 
