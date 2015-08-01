@@ -7,6 +7,7 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
   $scope.reverseSort = false
   $scope.itemsByPage = 10
   houses = HouseService.query()
+  $scope.orderStatus = {}
 
   $scope.find = () ->
     OrderService.query()
@@ -37,7 +38,9 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
     $scope.order.$save ( () ->
       paramService.set $scope.order
       $log.debug "order #{$scope.order.orderId} status is #{$scope.order.status}"
-      msgBookSuccess $scope.order if $scope.order.status is "预订成功"
+      if $scope.order.status is "预订成功" #send notification to user and manager
+        msgBookSuccess $scope.order 
+        AvailableService.setOrderSuccess $scope.order
       $location.path "orders",
       (errorResponse) ->
         $log.debug errorResponse.data.message
@@ -85,6 +88,15 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
         $location.path "orders"
       )
     )
+
+  $scope.all = () ->
+    $scope.search = ""
+    $("#orderSearch")[0].focus()
+
+  $scope.notPay = () ->
+    $scope.search = "已提交" 
+    $("#orderSearch")[0].focus()
+    
    
   #notify user order cancel
   msgOrderCancel = (orderDetails) ->

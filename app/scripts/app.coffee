@@ -4,8 +4,10 @@ meanApp = angular.module 'meanApp', ['ngCookies', 'ngResource', 'ngRoute', 'smar
 meanApp.constant('_', window._)
 # meanApp.constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000')
 # meanApp.constant('APP_URL', 'http://qa.aghchina.com.cn:9000')
+# meanApp.constant('OPENID', 'o82BBs9o0ndCJPt0bDxrzhpettpE')
 meanApp.constant('API_ENDPOINT', 'http://app.aghchina.com.cn:3000')
 meanApp.constant('APP_URL', 'http://app.aghchina.com.cn:9000')
+meanApp.constant('OPENID', 'osIpsuHE6jlAKu-jduZw3AYkQfu8')
 
 #logout idle users
 meanApp.run ($rootScope, $location, $log) ->
@@ -14,7 +16,7 @@ meanApp.run ($rootScope, $location, $log) ->
     now = new Date   
     sec = (now - lastDigestRun) / 1000
     $log.debug sec
-    if sec > 300
+    if sec > 900
       $location.path "/login"
     else
     lastDigestRun = now

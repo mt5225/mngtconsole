@@ -46,4 +46,18 @@ meanApp.service 'AvailableService', ($http, $log, API_ENDPOINT) ->
       ).error (data) ->
         $log.error "[order service] failed to cancel order"
         $log.debug data
+
+    setOrderSuccess: (order) ->
+      $log.debug "set order #{order.orderId} success"
+      $http(
+        method: 'POST'
+        url: "#{API_ENDPOINT}/api/orders/#{order.orderId}"
+        headers: {'Content-Type': 'application/json'}
+        data: JSON.stringify({ status: '预订成功'})
+        dataType: 'json'
+      ).success((data) ->
+        $log.info "[order service] set order success  !"
+      ).error (data) ->
+        $log.error "[order service] failed to set order success"
+        $log.debug data
   }

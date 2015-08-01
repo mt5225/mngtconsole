@@ -31,7 +31,7 @@
                         <option value="" disabled selected>指定订单状态</option>
                         <option value="已提交">已提交</option>
                         <option value="支付失败">支付失败</option>
-                        <option value="支付已取消">支付已取消</option>
+                        <option value="支付取消">支付取消</option>
                         <option value="预订成功">预订成功</option>
                     </select>
                 </div>
@@ -49,6 +49,6 @@
         &nbsp;&nbsp;&nbsp;
         <button class="btn waves-effect waves-light" ng-click="close()" name="action">返 回</button>
         &nbsp;&nbsp;&nbsp;
-        <button ng-show="order.status != '订单取消'" class="btn waves-effect waves-light red" ng-click="cancelOrder()" name="action">取消订单</button>
+        <button ng-show="order.status != '订单取消'" class="btn waves-effect waves-light red" ng-click="cancelOrder()" name="cancelOrder">取消订单</button>
     </div>
 </div>

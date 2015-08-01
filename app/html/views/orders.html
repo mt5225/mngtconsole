@@ -14,15 +14,18 @@
             </tr>
             <tr>
                 <th>
-                    <input st-search="orderId" placeholder="搜订单号" class="input-sm form-control" type="search" />
+                    <input st-search="orderId" placeholder="按订单号查询" class="input-sm form-control" type="search" />
                 </th>
-                <th colspan="4">
-                    <input st-search placeholder="全局搜索" class="input-sm form-control" type="search" />
+                <th>
+                    <input id="orderSearch" st-search placeholder="全局搜索" ng-model="search" class="input-sm form-control" type="search" />
                 </th>
                 <th colspan="1">&nbsp;</th>
                 <th>
                    <a class="btn-floating btn waves-effect waves-light" ng-href="/#/orders/create"><i class="mdi-content-add"></i></a>
                 </th>
+                <th colspan="1">&nbsp;</th>
+                <th colspan="1"><button class="btn waves-effect waves-light red" ng-click="notPay()" name="action">未支付订单</button></th>
+                <th colspan="1"><button class="btn waves-effect waves-light" ng-click="all()" name="action">全部订单</button></th>
             </tr>
         </thead>
         <tbody>

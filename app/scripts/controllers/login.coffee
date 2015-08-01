@@ -1,10 +1,10 @@
-meanApp.controller 'LoginController', ($scope, Global, LoginService, $location, $log, UserService) ->
+meanApp.controller 'LoginController', ($scope, Global, LoginService, $location, $log, UserService, OPENID) ->
   $scope.global = Global
   $scope.login = () ->
-    $log.debug "username=#{$scope.username} password=#{$scope.password}"
+    $log.debug "username=#{$scope.username} password=#{$scope.password} openid=#{OPENID}"
     password_hash = md5 $scope.password
     $log.debug password_hash
-    UserService.get {openid: 'osIpsuHE6jlAKu-jduZw3AYkQfu8'}
+    UserService.get {openid: OPENID}
       .$promise.then ((payload) ->
         user = payload
         if password_hash is user.memo

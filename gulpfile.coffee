@@ -146,13 +146,13 @@ gulp.task 'clean-remote-web', ()->
 gulp.task 'restart-qa', ()->
   ssh.exec([
     'export NODE_ENV=qa;cd /root/mngtconsole;forever stop server.coffee;forever start -c coffee server.coffee', 
-    'export NODE_ENV=qa;cd /root/mngtconsole;forever stop orderscaner.coffee;forever start -c coffee orderscaner.coffee'
+    #'export NODE_ENV=qa;cd /root/mngtconsole;forever stop orderscaner.coffee;forever start -c coffee orderscaner.coffee'
   ], filePath: 'commands.log').pipe gulp.dest('.')
 
 gulp.task 'restart-prod', ()->
   ssh.exec([
     'export NODE_ENV=prod;cd /root/mngtconsole;forever stop server.coffee;forever start -c coffee server.coffee', 
-    'export NODE_ENV=prod;cd /root/mngtconsole;forever stop orderscaner.coffee;forever start -c coffee orderscaner.coffee'
+    #'export NODE_ENV=prod;cd /root/mngtconsole;forever stop orderscaner.coffee;forever start -c coffee orderscaner.coffee'
   ], filePath: 'commands.log').pipe gulp.dest('.')
 
 gulp.task 'cal', () ->
