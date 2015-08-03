@@ -1,5 +1,11 @@
 <div ng-controller="SurveyController" ng-init="find()">
     <br>
+    <p> &nbsp;共{{length}}条问卷记录 &nbsp;
+        <button class="btn waves-effect waves-light red" ng-click="export('志愿者')" name="exportVolunteer">导出志愿者问卷</button>
+        &nbsp;
+        <button class="btn waves-effect waves-light" ng-click="export('入住')" name="exportCheckIn">导出入住问卷</button>
+    </p>
+    <br>
     <table class="table striped">
         <thead>
             <tr class="teal lighten-4">
@@ -17,7 +23,4 @@
         </tr>
     </table>
     <br>
-    <p> &nbsp;共{{length}}条问卷记录 &nbsp;
-        <button class="btn waves-effect waves-light red" ng-click="export()" name="action">导出到本地</button>
-    </p>
 </div>

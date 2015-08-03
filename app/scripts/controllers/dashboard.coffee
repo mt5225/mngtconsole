@@ -3,7 +3,9 @@ meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseSe
   if Global.authenticated isnt true
     $location.path "login" 
     return
-  
+
+  $scope.tribeName = "石舍香樟"
+
   Date::addDays = (days) ->
     dat = new Date(@valueOf())
     dat.setDate dat.getDate() + days
@@ -55,7 +57,7 @@ meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseSe
   $scope.show = (order) ->
     $log.debug $scope.displayOption
     if $scope.displayOption
-      return order.status is '预订成功' 
+      return order.status is '预订成功'
     else
       return true
   

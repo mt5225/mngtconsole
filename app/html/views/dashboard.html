@@ -1,7 +1,7 @@
 <div ng-controller="DashboardController" ng-init="find(0)">
     <br>
     <div class="row">
-        <div class = "col s8">
+        <div class="col s7">
             <button class="btn waves-effect waves-light" ng-click="find(0)"> 本 周
                 <i class="material-icons"></i>
             </button>
@@ -18,12 +18,18 @@
                 <i class="material-icons"></i>
             </button>
         </div>
-        <div class="switch col s4">
+        <div class="switch col s3">
             <label>
-                显示全部
+                全部
                 <input type="checkbox" checked ng-model="displayOption">
                 <span class="lever"></span> 预订成功
             </label>
+        </div>
+        <div class="col s2">
+            <select class="browser-default" ng-model="tribeName">
+                <option value="芦茨土屋">芦茨土屋</option>
+                <option value="石舍香樟">石舍香樟</option>
+            </select>
         </div>
     </div>
     <br>
@@ -36,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="house in houses">
+            <tr ng-repeat="house in houses |filter: { tribe:  tribeName}">
                 <td>{{house.name}}</td>
                 <td ng-repeat="day in days">
                     <ul class="collection" ng-repeat="order in getOrder(day, house.name)">
