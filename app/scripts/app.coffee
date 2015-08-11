@@ -24,3 +24,7 @@ meanApp.run ($rootScope, $location, $log) ->
     lastDigestRun = now
     return
   return
+
+meanApp.filter 'timeToStr', (dateService)->
+  (input) ->
+    dateService.formatDate(new Date (parseInt(input)*1000))

@@ -1,4 +1,4 @@
-<div ng-controller="UserController" ng-init="find()">
+<!-- <div ng-controller="UserController" ng-init="find()">
     <br>
     <div class="row">
         <div class="input-field col s6">
@@ -26,4 +26,54 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div ng-controller="UserController" ng-init="find()">
+    <br>
+    <p class="flow-text col s6"> 共 <b>{{totalUser}}</b> 份用户资料</p>
+    <table st-table="displayedCollection" st-safe-src="users" class="table table-striped">
+        <thead>
+            <tr class="teal lighten-4">
+                <th>微信昵称</th>
+                <th>真实姓名</th>
+                <th st-sort="subscribe_time" st-sort-default="reverse">关注漫生活时间</th>
+                <th st-sort="member_level">成员类型</th>               
+                <th>手机号</th>
+                <th>邮箱</th>
+                <th>关联信息</th>
+            </tr>
+            <tr>
+                <th>
+                    <input id="userSearch" st-search placeholder="全局搜索" class="input-sm form-control" type="search" />
+                </th>
+                <th colspan="1">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr st-select-row="row" ng-repeat="user in displayedCollection" >
+                <td> <a data-ng-href="#/users/{{user.openid}}"><i class="mdi-editor-mode-edit"></i>{{user.nickname}}</a></td>
+                <td>{{user.realname}}</td>
+                <td>{{user.subscribe_time | timeToStr}}</td>
+                <td>{{user.member_level}}</td>
+                <td>{{user.cell}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                    <a href="/#/orders?openid={{user.openid}}" class="black-text">入住历史</a> &nbsp;
+                    <a href="/#/surveys/{{user.openid}}" class="black-text">问卷</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="1">
+                    <label for="items">每页显示纪录数</label>
+                    <input placeholder="每页显示纪录数" class="input-sm form-control ng-valid ng-dirty ng-valid-number ng-touched" name="items" id="items" type="number" ng-model="itemsByPage">
+                </td>
+                <td colspan="5">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                </td>
+                
+            </tr>
+        </tfoot>
+    </table>
 </div>

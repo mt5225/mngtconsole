@@ -46,6 +46,14 @@ meanApp.controller 'DashboardController', ($scope, Global, OrderService, HouseSe
     $scope.houses = HouseService.query()
     $scope.days = nextWeekArray(hop)
 
+  $scope.findByDate = ()->
+    if $scope.calDay?
+      a = new Date()
+      b = new Date($scope.calDay)
+      weeks = Math.round((b - a) / 604800000)
+      $log.debug "weeks = #{weeks}"
+      $scope.find(weeks)
+
   #todo filter order with right status
   $scope.getOrder = (dayStr, housename) ->
     status = []

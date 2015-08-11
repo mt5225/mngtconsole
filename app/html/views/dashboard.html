@@ -2,28 +2,20 @@
     <br>
     <div class="row">
         <div class="col s7">
-            <button class="btn waves-effect waves-light" ng-click="find(0)"> 本 周
-                <i class="material-icons"></i>
+            <button class="btn waves-effect waves-light col s1" ng-click="find(-3)"> -3
             </button>
-            <button class="btn waves-effect waves-light" ng-click="find(1)"> 下 周
-                <i class="material-icons"></i>
+            <button class="btn waves-effect waves-light col s2 red lighten-2" ng-click="find(-2)"> -2 周
             </button>
-            <button class="btn waves-effect waves-light" ng-click="find(2)"> ＋2 周
-                <i class="material-icons"></i>
+            <button class="btn waves-effect waves-light col s2" ng-click="find(-1)"> -1 周
             </button>
-            <button class="btn waves-effect waves-light" ng-click="find(3)"> ＋3 周
-                <i class="material-icons"></i>
+            <button class="btn waves-effect waves-light col s2 red lighten-2" ng-click="find(0)"> 本 周
             </button>
-            <button class="btn waves-effect waves-light" ng-click="find(4)"> ＋4 周
-                <i class="material-icons"></i>
+            <button class="btn waves-effect waves-light col s2" ng-click="find(1)"> +1 周
             </button>
-        </div>
-        <div class="switch col s3">
-            <label>
-                全部
-                <input type="checkbox" checked ng-model="displayOption">
-                <span class="lever"></span> 预订成功
-            </label>
+            <button class="btn waves-effect waves-light col s2 red lighten-2" ng-click="find(2)"> ＋2 周
+            </button>
+            <button class="btn waves-effect waves-light col s1" ng-click="find(3)"> ＋3
+            </button>
         </div>
         <div class="col s2">
             <select class="browser-default" ng-model="tribeName">
@@ -31,6 +23,18 @@
                 <option value="石舍香樟">石舍香樟</option>
             </select>
         </div>
+        <div class="col s3">
+            <input type="date" class="datepicker" ng-model="calDay">
+            <button class="btn waves-effect waves-light" ng-click="findByDate()"> Go
+            </button>
+        </div>
+    </div>
+    <div class="switch">
+        <label>
+            全部订单
+            <input type="checkbox" checked ng-model="displayOption">
+            <span class="lever"></span> 预订成功
+        </label>
     </div>
     <br>
     <table class="table bordered striped">

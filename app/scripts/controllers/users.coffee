@@ -4,12 +4,15 @@ meanApp.controller 'UserController', ($scope, Global, UserService, $log, $routeP
     return
   $scope.global = Global
   $scope.fruits = ['家居','教育','健康','美食','环艺','音乐','文学','视觉','科技','定制','宗教']
+  $scope.itemsByPage  = 10
+
   
   $scope.find = () ->
     UserService.query()
     .$promise.then ((payload) ->
       $scope.users = payload
       $scope.totalUser = $scope.users.length if $scope.users?
+      $scope.displayedCollection = [].concat($scope.users)
     )
 
   $scope.close = () ->
