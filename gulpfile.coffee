@@ -15,16 +15,16 @@ shell = require 'gulp-shell'
 sshConfig = require './config.json'
 ssh = require('gulp-ssh')(
   ignoreErrors: false
-  sshConfig:
-    host: 'app.aghchina.com.cn'
-    port: 22
-    username: sshConfig.user
-    password: sshConfig.pass
   # sshConfig:
-  #   host: 'qa.aghchina.com.cn'
+  #   host: 'app.aghchina.com.cn'
   #   port: 22
   #   username: sshConfig.user
   #   password: sshConfig.pass
+  sshConfig:
+    host: 'qa.aghchina.com.cn'
+    port: 22
+    username: sshConfig.user
+    password: sshConfig.pass
 )
 
 path =

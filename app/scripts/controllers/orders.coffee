@@ -79,15 +79,19 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
     )
     
   $scope.cancelOrder = () ->
+    $('#modal1').closeModal()
+    paramService.set $scope.order
     $scope.order.$save ( () ->
       AvailableService.cancelOrder $scope.order
       msgOrderCancel $scope.order
       .then((payload) ->
         $log.debug payload.data
-        paramService.set payload.data
         $location.path "orders"
       )
     )
+
+  $scope.closeDialog = () ->
+    $('#modal1').closeModal()
 
   $scope.all = () ->
     $scope.search = ""
@@ -100,6 +104,7 @@ meanApp.controller 'OrderController', ($scope, Global, OrderService, HouseServic
    
   #notify user order cancel
   msgOrderCancel = (orderDetails) ->
+    return if !$scope.order.wechatOpenID
     msg = {}
     msg.touser = $scope.order.wechatOpenID
     msg.template_name = "order_cancel"

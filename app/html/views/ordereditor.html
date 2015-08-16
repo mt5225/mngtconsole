@@ -8,10 +8,7 @@
         </li>
         <li class="collection-item">
             <p>入住时间: {{order.checkInDay}} &nbsp; 退房: {{order.checkOutDay}}</p>
-            <p>客人微信昵称: &nbsp;<a href="#/users/{{order.wechatOpenID}}"> {{order.wechatNickName}} <i class="mdi-editor-mode-edit"></i></a> 
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            入住人数（12岁以上）：&nbsp; <b>{{order.numOfGuest}} </b>&nbsp;&nbsp;
-            入住人数（12岁以下）：&nbsp; <b>{{order.numOfGuestChild}}</b>
+            <p>客人微信昵称: &nbsp;<a href="#/users/{{order.wechatOpenID}}"> {{order.wechatNickName}} <i class="mdi-editor-mode-edit"></i></a> &nbsp;&nbsp;&nbsp;&nbsp; 入住人数（12岁以上）：&nbsp; <b>{{order.numOfGuest}} </b>&nbsp;&nbsp; 入住人数（12岁以下）：&nbsp; <b>{{order.numOfGuestChild}}</b>
             </p>
             <p>活动计划: &nbsp; <b>{{order.plan}} </b></p>
         </li>
@@ -49,6 +46,23 @@
         &nbsp;&nbsp;&nbsp;
         <button class="btn waves-effect waves-light" ng-click="close()" name="action">返 回</button>
         &nbsp;&nbsp;&nbsp;
-        <button ng-show="order.status != '订单取消'" class="btn waves-effect waves-light red" ng-click="cancelOrder()" name="cancelOrder">取消订单</button>
+        <!-- <button ng-show="order.status != '订单取消'" class="btn waves-effect waves-light red" ng-click="cancelOrder()" name="cancelOrder">取消订单</button> -->
+        <a href="#modal1" ng-show="order.status != '订单取消'" class="btn modal-trigger waves-effect waves-light red" name="cancelOrder">取消订单</a>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>您确定要取消该订单吗?  &nbsp;&nbsp;
+            <button ng-click="cancelOrder()" class="col s2 offset-s1 waves-effect waves-light btn red">确 定</button> 
+            &nbsp;&nbsp;&nbsp; 
+            <button ng-click="closeDialog()" class="col s2 offset-s1 waves-effect waves-light btn">关 闭</button> </h4>
+            <h5>取消后后台会自动释放房源，用户也会收到相应的微信通知，请通过“营地状态管理”确认房源成功释放</h5>
+        </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+});
+</script>

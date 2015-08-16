@@ -36,6 +36,9 @@ meanApp.config ['$routeProvider',
           .when '/surveys/:openid',
             templateUrl: 'views/surveys.html'
             controller: 'SurveyController'
+          .when '/surveys/view/:id',
+            templateUrl: 'views/survey_view.html'
+            controller: 'SurveyController'
           .when '/dashboard',
             templateUrl: 'views/dashboard.html'
             controller: 'DashboardController'
