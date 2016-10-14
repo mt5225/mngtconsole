@@ -8,4 +8,4 @@ module.exports =
     Survey.find {}, (err, surveys) -> callback err, surveys
 
   getSurveyById: (id, callback) ->
-    Survey.findOne {id: id}, (err, survey) -> callback err, survey
+    Survey.findOne {_id: id}, (err, survey) -> callback err, survey

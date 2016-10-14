@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tr ng-repeat="survey in surveys">
-            <td> <a data-ng-href="#/surveys/{{survey._id}}"> <i class="mdi-editor-mode-edit"</i> {{survey.type}} </a></td>
+            <td> <a data-ng-href="#/surveys/view/{{survey._id}}"> <i class="mdi-editor-mode-edit"</i> {{survey.type}} </a></td>
             <td>{{survey.createDay}}</td>
             <td>{{survey.userinfo['nickname']}}</td>
             <td class="shortten">{{survey}}</td>

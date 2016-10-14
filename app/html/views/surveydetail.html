@@ -1,0 +1,34 @@
+<div ng-controller="SurveyController" ng-init="findOne()">
+    <br/>
+    <ul class="collection">
+        <li class="collection-item avatar">
+            <div class="row">
+                <div class="col s4">
+                    <p><img ng-src="{{survey.userinfo.headimgurl}}" alt="" class="circle"> &nbsp;微信昵称: {{survey.userinfo.nickname}}</p>
+                    <p><i class="mdi-maps-beenhere"></i>&nbsp;{{survey.userinfo.city}} {{survey.userinfo.province}} {{survey.userinfo.country}}</p>
+                </div>
+                <a href="/#/orders?openid={{survey.userinfo.openid}}" class="col s2 offset-s1 waves-effect waves-light btn">营地订单</a>
+            </div>
+        </li>
+    </ul>
+    <br/>
+    <h4> 问卷类型: {{survey.type}}</h4>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>问题编号</th>
+              <th>问 题</th>
+              <th>回 答</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in surveyResult">
+            <td>{{item.questionIndex}}</td>
+            <td>{{item.question}}</td>
+            <td>{{item.answer}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <a class="btn waves-effect waves-light" href="/#/surveys">返 回</a>
+</div>
